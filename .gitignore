@@ -2,3 +2,4 @@ node_modules
 logs
 state
 .env
+.DS_Store
