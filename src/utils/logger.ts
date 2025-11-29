@@ -12,7 +12,7 @@ export function createLogDirectory(prefix: string): string {
         .replace(/:/g, '-')
         .split('.')[0]; // Format: YYYY-MM-DD_HH-MM-SS
 
-    const logDirName = `${prefix}_${timestamp}`;
+    const logDirName = `${timestamp}_${prefix}`;
     const logDir = path.join(__dirname, '../../logs', logDirName);
 
     if (!fs.existsSync(logDir)) {
