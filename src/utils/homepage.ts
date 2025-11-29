@@ -1,167 +1,92 @@
-import { Page } from 'playwright';
+import { NetworkLogs, Unit, Level } from '../interfaces';
 
-export interface DailyQuest {
-    title: string;
-    value: string;
-    isCompleted: boolean;
+export function getGems(logs: NetworkLogs): string {
+    return logs.userData?.gemsConfig?.gems?.toString() ?? 'Unknown';
 }
 
-export interface Level {
-    number: number;
-    link: string;
-    state: string;
+export function getStreak(logs: NetworkLogs): string {
+    return logs.userData?.streak?.toString() ?? 'Unknown';
 }
 
-export interface Unit {
-    number: number;
-    title: string;
-    levels: Level[];
+export function getAvailableLanguages(logs: NetworkLogs): string[] {
+    const userData = logs.userData;
+    if (!userData?.courses) return [];
+
+    return userData.courses
+        .filter((c: any) => c.learningLanguage !== c.fromLanguage)
+        .map((c: any) => c.title)
+        .filter((t: any) => t);
 }
 
-export function getGems(userData: any): string {
-    try {
-        if (userData.gems) return userData.gems.toString();
-        if (userData.gemsConfig && userData.gemsConfig.gems) return userData.gemsConfig.gems.toString();
-        return 'Unknown';
-    } catch (e) {
-        return 'Unknown';
+export function getCurrentLanguage(logs: NetworkLogs): string {
+    const userData = logs.userData;
+    if (!userData) return 'Unknown';
+
+    // Primary source: Current course title
+    if (userData.currentCourse && userData.courses) {
+        // userData.learningLanguage matches the current course's learningLanguage
+        const current = userData.courses.find((c: any) => c.learningLanguage === userData.learningLanguage);
+        if (current) return current.title || 'Unknown';
     }
+
+    return userData.learningLanguage || 'Unknown';
 }
 
-export function getStreak(userData: any): string {
-    try {
-        return userData.streak?.toString() || 'Unknown';
-    } catch (e) {
-        return 'Unknown';
+export function getCurrentLeague(logs: NetworkLogs): string {
+    // Primary source: Leaderboard data tier
+    if (logs.leaderboardData?.tier !== undefined) {
+        return logs.leaderboardData.tier.toString();
     }
+
+    return 'Unknown';
 }
 
-export function getAvailableLanguages(userData: any): string[] {
-    try {
-        if (userData.courses && Array.isArray(userData.courses)) {
-            return userData.courses.map((c: any) => c.title).filter((t: any) => t);
-        }
-        return [];
-    } catch (e) {
-        console.error('Error fetching languages:', e);
-        return [];
-    }
-}
-
-export function getCurrentLanguage(userData: any): string {
-    try {
-        const currentCourseId = userData.currentCourseId;
-        if (currentCourseId && userData.courses) {
-            const course = userData.courses.find((c: any) => c.id === currentCourseId);
-            if (course) {
-                return course.title;
-            }
-        }
-        return 'Unknown';
-    } catch (e) {
-        return 'Unknown';
-    }
-}
-
-export function getCurrentLeague(userData: any): string {
-    try {
-        let tier = -1;
-        if (userData.leaderboard?.active_contest?.tier !== undefined) {
-            tier = userData.leaderboard.active_contest.tier;
-        } else if (userData.tier !== undefined) {
-            tier = userData.tier;
-        }
-
-        if (tier !== -1) {
-            return tier.toString();
-        }
-
-        // Fallback: check tracking properties
-        if (userData.trackingProperties?.cohort_tier !== undefined) {
-            return userData.trackingProperties.cohort_tier.toString();
-        }
-
-        return 'Unknown';
-    } catch (e) {
-        return 'Unknown';
-    }
-}
-
-export function getDailyQuests(userData: any): DailyQuest[] | string {
-    // Daily quests text was not found in the main profile JSON.
-    // Returning empty for now as per plan note.
+export function getDailyQuests(logs: NetworkLogs): any[] {
     return [];
 }
 
-export function getSkillPath(userData: any): Unit[] {
-    try {
-        const units: Unit[] = [];
-        const currentCourse = userData.currentCourse;
-        if (!currentCourse || !currentCourse.pathSectioned) return [];
+export function getSkillPath(logs: NetworkLogs): any[] {
+    const userData = logs.userData;
+    if (!userData?.currentCourse?.pathSectioned) return [];
 
-        const pathSections = currentCourse.pathSectioned;
+    const units: any[] = [];
+    let unitCounter = 1;
 
-        let globalUnitIndex = 1; // 1-based index for URL
+    userData.currentCourse.pathSectioned.forEach((section: any) => {
+        if (!section.units) return;
 
-        for (const section of pathSections) {
-            if (!section.units) continue;
+        section.units.forEach((unit: Unit) => {
+            let title = unit.teachingObjective || 'Unknown';
 
-            for (const unit of section.units) {
-                // Title
-                // Use teachingObjective from the unit if available
-                let title = unit.teachingObjective || 'Unknown';
-
-                // Fallback: Check first level if unit title is missing
-                if (title === 'Unknown' && unit.levels && unit.levels.length > 0) {
-                    const firstLevel = unit.levels[0];
-                    title = firstLevel.teachingObjective || firstLevel.name || 'Unknown';
-                }
-
-                // Fallback: Guidebook
-                if (title === 'Unknown' && unit.guidebook?.url) {
+            // Handle special cases that are not strictly fallbacks but data structure variants
+            if (title === 'Unknown') {
+                if (unit.guidebook?.url) {
                     title = 'Guidebook Available';
-                }
-
-                // Fallback: Daily Refresh
-                if (title === 'Unknown' && unit.levels && unit.levels.length > 0) {
-                    const firstLevel = unit.levels[0];
+                } else if (unit.levels?.length > 0) {
+                    const firstLevel: any = unit.levels[0];
+                    // Daily Refresh is a specific unit type
                     if (firstLevel.dailyRefreshInfo || (firstLevel.debugName && firstLevel.debugName.includes('Daily Refresh'))) {
                         title = 'Daily Refresh';
+                    } else {
+                        // Use level info if unit title is missing (common in some course structures)
+                        title = firstLevel.teachingObjective || firstLevel.name || 'Unknown';
                     }
                 }
-
-                const levels: Level[] = [];
-                if (unit.levels) {
-                    for (let i = 0; i < unit.levels.length; i++) {
-                        const level = unit.levels[i];
-                        // Construct link
-                        const link = `https://www.duolingo.com/lesson/unit/${globalUnitIndex}/level/${i + 1}`;
-
-                        // State
-                        const state = level.state || 'Unknown';
-
-                        levels.push({
-                            number: i + 1,
-                            link: link,
-                            state: state
-                        });
-                    }
-                }
-
-                units.push({
-                    number: globalUnitIndex, // Use the running count
-                    title: title,
-                    levels: levels
-                });
-
-                globalUnitIndex++;
             }
-        }
 
-        return units;
+            const levels = unit.levels ? unit.levels.map((level: Level) => ({
+                state: level.state,
+                finishedSessions: level.finishedSessions,
+                totalSessions: level.totalSessions
+            })) : [];
 
-    } catch (e) {
-        console.error('Error parsing skill path:', e);
-        return [];
-    }
+            units.push({
+                number: unitCounter++,
+                title: title,
+                levels: levels
+            });
+        });
+    });
+
+    return units;
 }

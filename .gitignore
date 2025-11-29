@@ -3,3 +3,4 @@ logs
 state
 .env
 .DS_Store
+dist

@@ -6,12 +6,12 @@
   "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --loader ts-node/esm src/main.ts",
-    "login-manual": "node --loader ts-node/esm src/login-manual.ts",
-    "login-auto": "node --loader ts-node/esm src/login-auto.ts",
-    "login-verify": "node --loader ts-node/esm src/login-verify.ts",
-    "start-manual": "node --loader ts-node/esm src/start-manual.ts",
-    "get-status": "node --loader ts-node/esm src/get-status.ts"
+    "start": "node --loader ts-node/esm --experimental-specifier-resolution=node src/main.ts",
+    "login-manual": "node --loader ts-node/esm --experimental-specifier-resolution=node src/login-manual.ts",
+    "login-auto": "node --loader ts-node/esm --experimental-specifier-resolution=node src/login-auto.ts",
+    "login-verify": "node --loader ts-node/esm --experimental-specifier-resolution=node src/login-verify.ts",
+    "start-manual": "node --loader ts-node/esm --experimental-specifier-resolution=node src/start-manual.ts",
+    "get-status": "node --loader ts-node/esm --experimental-specifier-resolution=node src/get-status.ts"
   },
   "keywords": [],
   "author": "",

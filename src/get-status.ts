@@ -14,6 +14,7 @@ import {
     getSkillPath
 } from './utils/homepage.js';
 import { startNetworkLogging } from './utils/network.js';
+import { NetworkLogs } from './interfaces';
 
 dotenv.config();
 
@@ -132,47 +133,37 @@ dotenv.config();
         const status: any = {};
 
         if (userData) {
-            // Merge leaderboard data if available
-            if (leaderboardData) {
-                // Try to find tier in leaderboard data and attach to userData
-                // Structure seen: { leaderboard: { active_contest: { tier: 9 } } }
-                // or { active: { ... } } depending on endpoint
-
-                // If it matches the structure we saw in logs:
-                if (leaderboardData.tier !== undefined) {
-                    userData.tier = leaderboardData.tier;
-                } else if (leaderboardData.leaderboard?.active_contest?.tier !== undefined) {
-                    userData.tier = leaderboardData.leaderboard.active_contest.tier;
-                }
-            }
+            // Create NetworkLogs object
+            const logs: NetworkLogs = {
+                userData: userData,
+                leaderboardData: leaderboardData
+            };
 
             // Gems
-            status.gems = getGems(userData);
+            status.gems = getGems(logs);
 
             // Streak
-            status.streak = getStreak(userData);
+            status.streak = getStreak(logs);
 
             // Languages (Available & Current)
-            status.availableLanguages = getAvailableLanguages(userData);
+            status.availableLanguages = getAvailableLanguages(logs);
 
             // Current Language
-            status.currentLanguage = getCurrentLanguage(userData);
+            status.currentLanguage = getCurrentLanguage(logs);
 
             // Current League
-            status.currentLeague = getCurrentLeague(userData);
+            status.currentLeague = getCurrentLeague(logs);
 
             // Daily Quests
-            status.dailyQuests = getDailyQuests(userData);
+            status.dailyQuests = getDailyQuests(logs);
 
             // Skill Path (Units)
-            status.units = getSkillPath(userData);
+            status.units = getSkillPath(logs);
         } else {
             status.error = "Failed to capture network data";
         }
 
         console.log('Status collected:', status);
-
-
 
         const outputPath = path.join(logDir, 'status.json');
         fs.writeFileSync(outputPath, JSON.stringify(status, null, 2));
