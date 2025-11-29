@@ -1,17 +1,7 @@
 import { Page } from 'playwright';
 import * as fs from 'fs';
 import * as path from 'path';
-
-interface NetworkLogEntry {
-    timestamp: string;
-    url: string;
-    method: string;
-    requestHeaders: Record<string, string>;
-    requestPostData?: string | null;
-    responseStatus: number;
-    responseHeaders: Record<string, string>;
-    responseBody: any;
-}
+import { UserData, LeaderboardData, NetworkLogEntry } from '../interfaces/index.js';
 
 export async function startNetworkLogging(page: Page, logDir: string) {
     const networkLogFile = path.join(logDir, 'network_logs.json');
@@ -78,5 +68,88 @@ export async function startNetworkLogging(page: Page, logDir: string) {
         } catch (e) {
             console.error('Error logging network response:', e);
         }
+    });
+}
+
+/**
+ * Capture user data from network responses
+ * Sets up network interception and waits for user data to be captured
+ */
+export async function captureUserData(page: Page, timeoutMs: number = 7500): Promise<UserData | null> {
+    return new Promise((resolve) => {
+        let userData: UserData | null = null;
+        let resolved = false;
+
+        const responseHandler = async (response: any) => {
+            if (resolved) return;
+
+            const url = response.url();
+            if (url.includes('/users/') && url.includes('fields=')) {
+                try {
+                    const json = await response.json();
+                    if (json.currentCourseId && json.courses) {
+                        userData = json;
+                        resolved = true;
+                        page.off('response', responseHandler);
+                        resolve(userData);
+                    }
+                } catch (e) {
+                    // Ignore parse errors
+                }
+            }
+        };
+
+        page.on('response', responseHandler);
+
+        // Timeout fallback
+        setTimeout(() => {
+            if (!resolved) {
+                resolved = true;
+                page.off('response', responseHandler);
+                resolve(userData);
+            }
+        }, timeoutMs);
+    });
+}
+
+/**
+ * Capture leaderboard data from network responses
+ * Sets up network interception and waits for leaderboard data to be captured
+ * Prioritizes active contest data over inactive data
+ */
+export async function captureLeaderboardData(page: Page, timeoutMs: number = 7500): Promise<LeaderboardData | null> {
+    return new Promise((resolve) => {
+        let leaderboardData: LeaderboardData | null = null;
+        let resolved = false;
+
+        const responseHandler = async (response: any) => {
+            if (resolved) return;
+
+            const url = response.url();
+            if (url.includes('duolingo-leaderboards-prod.duolingo.com') && url.includes('/leaderboards/')) {
+                try {
+                    const json = await response.json();
+                    if (json.leaderboard || json.active) {
+                        // Prioritize active contest data
+                        if (!leaderboardData || (json.active && !leaderboardData.active)) {
+                            leaderboardData = json;
+                        }
+                    }
+                } catch (e) {
+                    // Ignore parse errors
+                }
+            }
+        };
+
+        page.on('response', responseHandler);
+
+        // Timeout fallback
+        setTimeout(() => {
+            if (!resolved) {
+                resolved = true;
+                page.off('response', responseHandler);
+                resolve(leaderboardData);
+            }
+        }, timeoutMs);
     });
 }

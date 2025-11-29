@@ -3,17 +3,19 @@ import * as fs from 'fs';
 import * as path from 'path';
 import dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
-import { isLoggedIn, getStatePath } from './utils/auth.js';
+import { isLoggedIn, getStatePath, waitForLogin } from './utils/auth.js';
 import {
     getGems,
     getStreak,
     getAvailableLanguages,
     getCurrentLanguage,
+    getCurrentLanguageISO,
     getCurrentLeague,
     getDailyQuests,
-    getSkillPath
+    getSkillPath,
+    getTodaysStreakCompleted
 } from './utils/homepage.js';
-import { startNetworkLogging } from './utils/network.js';
+import { startNetworkLogging, captureUserData, captureLeaderboardData } from './utils/network.js';
 import { NetworkLogs } from './interfaces';
 
 dotenv.config();
@@ -32,7 +34,7 @@ dotenv.config();
     });
 
     const logDir = createLogDirectory('get-status');
-    console.log(`Log directory: ${logDir}`);
+    console.log(`Log directory: ${ logDir } `);
 
     try {
         const context = await browser.newContext({
@@ -44,58 +46,15 @@ dotenv.config();
         // Start network logging
         await startNetworkLogging(page, logDir);
 
-        // Intercept user profile and leaderboard
-        let userData: any = null;
-        let leaderboardData: any = null;
-
-        page.on('response', async (response) => {
-            const url = response.url();
-
-            // Match users/<id> request which contains the profile
-            if (url.includes('/users/') && url.includes('fields=')) {
-                try {
-                    const json = await response.json();
-                    if (json.currentCourseId && json.courses) {
-                        userData = json;
-                        console.log('Captured user profile data from network.');
-                    }
-                } catch (e) { /* Ignore */ }
-            }
-
-            // Match leaderboard request
-            // https://duolingo-leaderboards-prod.duolingo.com/leaderboards/...
-            if (url.includes('duolingo-leaderboards-prod.duolingo.com') && url.includes('/leaderboards/')) {
-                try {
-                    const json = await response.json();
-                    // Check for tier in the response
-                    // It might be in active_contest or similar
-                    if (json.leaderboard || json.active) {
-                        // Prioritize if it has 'active' data (meaning active cohort)
-                        // or if we don't have any data yet.
-                        if (!leaderboardData || (json.active && !leaderboardData.active)) {
-                            leaderboardData = json;
-                            console.log('Captured leaderboard data from network (Active).');
-                        } else if (!leaderboardData) {
-                            leaderboardData = json;
-                            console.log('Captured leaderboard data from network.');
-                        }
-                    }
-                } catch (e) { /* Ignore */ }
-            }
-        });
+        // Set up data capture
+        const userDataPromise = captureUserData(page);
+        const leaderboardDataPromise = captureLeaderboardData(page);
 
         console.log('Navigating to Duolingo...');
         await page.goto('https://www.duolingo.com/learn', { waitUntil: 'domcontentloaded' });
 
-        // Wait for login check with polling
-        let loggedIn = false;
-        for (let i = 0; i < 10; i++) {
-            if (await isLoggedIn(page)) {
-                loggedIn = true;
-                break;
-            }
-            await new Promise(r => setTimeout(r, 1000));
-        }
+        // Wait for login using utility function
+        const loggedIn = await waitForLogin(page);
 
         if (!loggedIn) {
             console.error('❌ Not logged in. Please run "npm run login-manual" or "npm run login-auto".');
@@ -105,20 +64,10 @@ dotenv.config();
         }
 
         console.log('Logged in. Waiting for data...');
-        // Wait for user data
-        for (let i = 0; i < 30; i++) {
-            if (userData) break;
-            await page.waitForTimeout(500);
-        }
 
-        // Wait a bit more for leaderboard data if not yet captured
-        if (userData && !leaderboardData) {
-            console.log('Waiting for leaderboard data...');
-            for (let i = 0; i < 10; i++) {
-                if (leaderboardData) break;
-                await page.waitForTimeout(500);
-            }
-        }
+        // Wait for both user data and leaderboard data
+        const userData = await userDataPromise;
+        const leaderboardData = await leaderboardDataPromise;
 
         if (!userData) {
             console.error('❌ Failed to capture user data from network.');
@@ -139,26 +88,24 @@ dotenv.config();
                 leaderboardData: leaderboardData
             };
 
-            // Gems
+            // Get current language ISO code
+            const currentLangISO = getCurrentLanguageISO(logs);
+
+            // Global stats
             status.gems = getGems(logs);
-
-            // Streak
             status.streak = getStreak(logs);
-
-            // Languages (Available & Current)
+            status.todaysStreakCompleted = getTodaysStreakCompleted(logs);
+            status.league = getCurrentLeague(logs);
+            status.dailyQuests = getDailyQuests(logs);
             status.availableLanguages = getAvailableLanguages(logs);
 
-            // Current Language
-            status.currentLanguage = getCurrentLanguage(logs);
-
-            // Current League
-            status.currentLeague = getCurrentLeague(logs);
-
-            // Daily Quests
-            status.dailyQuests = getDailyQuests(logs);
-
-            // Skill Path (Units)
-            status.units = getSkillPath(logs);
+            // Language-specific data organized by ISO code
+            status.languages = {
+                [currentLangISO]: {
+                    name: getCurrentLanguage(logs),
+                    units: getSkillPath(logs)
+                }
+            };
         } else {
             status.error = "Failed to capture network data";
         }
@@ -167,7 +114,7 @@ dotenv.config();
 
         const outputPath = path.join(logDir, 'status.json');
         fs.writeFileSync(outputPath, JSON.stringify(status, null, 2));
-        console.log(`Status saved to: ${outputPath}`);
+        console.log(`Status saved to: ${ outputPath } `);
 
         await browser.close();
 

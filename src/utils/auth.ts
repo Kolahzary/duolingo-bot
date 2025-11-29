@@ -30,3 +30,20 @@ export function ensureStateDir(): string {
 export function getStatePath(): string {
     return path.join(ensureStateDir(), 'storageState.json');
 }
+
+/**
+ * Wait for login check with polling
+ * @param page - Playwright page object
+ * @param maxRetries - Maximum number of retries (default: 10)
+ * @param retryDelayMs - Delay between retries in milliseconds (default: 1000)
+ * @returns Promise<boolean> - true if logged in, false otherwise
+ */
+export async function waitForLogin(page: Page, maxRetries: number = 10, retryDelayMs: number = 1000): Promise<boolean> {
+    for (let i = 0; i < maxRetries; i++) {
+        if (await isLoggedIn(page)) {
+            return true;
+        }
+        await new Promise(r => setTimeout(r, retryDelayMs));
+    }
+    return false;
+}

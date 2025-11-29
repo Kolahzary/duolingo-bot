@@ -530,13 +530,68 @@ export interface UserData {
     privacySettings?: any;
 
     /**
-     * @example { "currentStreak": 1416, ... }
+     * Detailed streak information including current, previous, and longest streaks.
+     * @example { "currentStreak": { "endDate": "2025-11-29", "length": 1416, ... }, ... }
      */
     streakData?: {
         /**
-         * @example 1416
+         * Information about the current active streak.
          */
-        currentStreak: number;
+        currentStreak: {
+            /**
+             * End date of the current streak.
+             * @example "2025-11-29"
+             */
+            endDate: string;
+            /**
+             * Length of the current streak in days.
+             * @example 1416
+             */
+            length: number;
+            /**
+             * Date when the streak was last extended (completed).
+             * If this matches today's date, the streak has been completed today.
+             * @example "2025-11-29"
+             */
+            lastExtendedDate: string;
+            /**
+             * Start date of the current streak.
+             * @example "2021-12-15"
+             */
+            startDate: string;
+        };
+        /**
+         * Information about the previous streak (null if no previous streak).
+         */
+        previousStreak: {
+            endDate: string;
+            length: number;
+            startDate: string;
+        } | null;
+        /**
+         * Information about the longest streak achieved.
+         */
+        longestStreak: {
+            /**
+             * End date of the longest streak.
+             * @example "2025-11-29"
+             */
+            endDate: string;
+            /**
+             * Length of the longest streak in days.
+             * @example 1416
+             */
+            length: number;
+            /**
+             * Date when this longest streak was achieved (null if currently active).
+             */
+            achieveDate: string | null;
+            /**
+             * Start date of the longest streak.
+             * @example "2021-12-15"
+             */
+            startDate: string;
+        };
     };
 
     /**

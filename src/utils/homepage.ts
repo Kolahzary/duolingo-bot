@@ -32,8 +32,14 @@ export function getCurrentLanguage(logs: NetworkLogs): string {
     return userData.learningLanguage || 'Unknown';
 }
 
+export function getCurrentLanguageISO(logs: NetworkLogs): string {
+    const userData = logs.userData;
+    if (!userData) return 'unknown';
+
+    return userData.learningLanguage || 'unknown';
+}
+
 export function getCurrentLeague(logs: NetworkLogs): string {
-    // Primary source: Leaderboard data tier
     if (logs.leaderboardData?.tier !== undefined) {
         return logs.leaderboardData.tier.toString();
     }
@@ -89,4 +95,54 @@ export function getSkillPath(logs: NetworkLogs): any[] {
     });
 
     return units;
+}
+
+export function getTodaysStreakCompleted(logs: NetworkLogs): boolean {
+    const userData = logs.userData;
+    if (!userData?.streakData?.currentStreak?.lastExtendedDate) {
+        return false;
+    }
+
+    // Get today's date in YYYY-MM-DD format
+    // Use the user's timezone offset if available
+    const now = new Date();
+    const timezoneOffset = userData.timezoneOffset;
+
+    // If we have timezone info, adjust accordingly
+    // timezoneOffset is in format like "+0300" or "-0500"
+    let todayStr: string;
+    if (timezoneOffset) {
+        // Parse offset (e.g., "+0300" -> 3 hours)
+        const sign = timezoneOffset[0] === '+' ? 1 : -1;
+        const hours = parseInt(timezoneOffset.slice(1, 3));
+        const minutes = parseInt(timezoneOffset.slice(3, 5));
+        const offsetMs = sign * (hours * 60 + minutes) * 60 * 1000;
+
+        // Get UTC time and apply user's offset
+        const userTime = new Date(now.getTime() + offsetMs);
+        todayStr = userTime.toISOString().split('T')[0];
+    } else {
+        // Fallback to local date
+        todayStr = now.toISOString().split('T')[0];
+    }
+
+    return userData.streakData.currentStreak.lastExtendedDate === todayStr;
+}
+
+/**
+ * Select a language from the courses menu
+ * @param page - Playwright page object
+ * @param languageName - Full name of the language (e.g., "Turkish", "Spanish")
+ */
+export async function selectLanguage(page: any, languageName: string): Promise<void> {
+    // Hover on the courses menu to show dropdown
+    const coursesMenu = page.locator('[data-test="courses-menu"]');
+    await coursesMenu.waitFor({ timeout: 10000 });
+    await coursesMenu.hover();
+    await page.waitForTimeout(1500);
+
+    // Find and click the language
+    const languageOption = page.getByText(languageName, { exact: true });
+    await languageOption.click();
+    await page.waitForTimeout(2000);
 }

@@ -55,7 +55,31 @@ Check if the currently saved session state is valid.
 pnpm run login-verify
 ```
 
-### 4. Start Manual Session
+### 4. Get Status
+Get your current Duolingo status including gems, streak, league, and learning progress.
+```bash
+pnpm run get-status
+```
+This will save a detailed status report to `logs/<timestamp>_get-status/status.json` with:
+- Global stats: gems, streak, todaysStreakCompleted, league, dailyQuests, availableLanguages
+- Language-specific data: current language name and learning path units
+
+### 5. Switch Language
+Switch your active learning language.
+```bash
+pnpm run switch-language -- <language-name>
+```
+Examples:
+```bash
+pnpm run switch-language -- Turkish
+pnpm run switch-language -- Spanish
+pnpm run switch-language -- French
+pnpm run switch-language -- Esperanto
+```
+
+**Note:** Use the full language name as it appears in Duolingo (e.g., "Turkish", not "tr").
+
+### 6. Start Manual Session
 Open a browser with the saved session state to interact with Duolingo manually.
 ```bash
 pnpm run start-manual
@@ -66,8 +90,11 @@ pnpm run start-manual
 - `src/login-manual.ts`: Script for manual login and state saving.
 - `src/login-auto.ts`: Script for automated login.
 - `src/login-verify.ts`: Script to verify login status.
+- `src/get-status.ts`: Script to get current Duolingo status and progress.
+- `src/switch-language.ts`: Script to switch active learning language.
 - `src/start-manual.ts`: Script to launch browser with saved state.
-- `src/utils/`: Shared utilities for authentication and logging.
+- `src/utils/`: Shared utilities for authentication, logging, and data extraction.
+- `src/interfaces/`: TypeScript interfaces for Duolingo API data structures.
 - `state/`: Directory where browser state (`storageState.json`) is saved (gitignored).
 - `logs/`: Directory for execution logs and screenshots (gitignored).
 
