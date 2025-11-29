@@ -64,6 +64,14 @@ This will save a detailed status report to `logs/<timestamp>_get-status/status.j
 - Global stats: gems, streak, todaysStreakCompleted, league, dailyQuests, availableLanguages
 - Language-specific data: current language name and learning path units
 
+**Get All Languages:**
+To fetch data for **all** your learning languages in a single run:
+```bash
+pnpm run get-status -- --all
+```
+This will iterate through every language you are learning and aggregate the data into `status.json`.
+
+
 ### 5. Switch Language
 Switch your active learning language.
 ```bash

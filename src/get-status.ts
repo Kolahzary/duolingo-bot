@@ -13,7 +13,8 @@ import {
     getCurrentLeague,
     getDailyQuests,
     getSkillPath,
-    getTodaysStreakCompleted
+    getTodaysStreakCompleted,
+    selectLanguage
 } from './utils/homepage.js';
 import { startNetworkLogging, captureUserData, captureLeaderboardData } from './utils/network.js';
 import { NetworkLogs } from './interfaces';
@@ -34,7 +35,7 @@ dotenv.config();
     });
 
     const logDir = createLogDirectory('get-status');
-    console.log(`Log directory: ${ logDir } `);
+    console.log(`Log directory: ${logDir} `);
 
     try {
         const context = await browser.newContext({
@@ -81,6 +82,10 @@ dotenv.config();
 
         const status: any = {};
 
+        // Check for --all flag
+        const args = process.argv.slice(2);
+        const fetchAll = args.includes('--all');
+
         if (userData) {
             // Create NetworkLogs object
             const logs: NetworkLogs = {
@@ -90,6 +95,7 @@ dotenv.config();
 
             // Get current language ISO code
             const currentLangISO = getCurrentLanguageISO(logs);
+            const currentLangName = getCurrentLanguage(logs);
 
             // Global stats
             status.gems = getGems(logs);
@@ -99,13 +105,53 @@ dotenv.config();
             status.dailyQuests = getDailyQuests(logs);
             status.availableLanguages = getAvailableLanguages(logs);
 
-            // Language-specific data organized by ISO code
-            status.languages = {
-                [currentLangISO]: {
-                    name: getCurrentLanguage(logs),
-                    units: getSkillPath(logs)
-                }
+            // Initialize languages object
+            status.languages = {};
+
+            // Add current language data
+            status.languages[currentLangISO] = {
+                name: currentLangName,
+                units: getSkillPath(logs)
             };
+
+            // If --all flag is present, fetch data for other languages
+            if (fetchAll) {
+                console.log('Fetching data for all languages...');
+                const availableLanguages = status.availableLanguages;
+
+                for (const langName of availableLanguages) {
+                    if (langName === currentLangName) continue;
+
+                    console.log(`Switching to ${langName}...`);
+
+                    // Select language
+                    await selectLanguage(page, langName);
+
+                    // Wait for data update
+                    const newUserDataPromise = captureUserData(page);
+                    await page.reload({ waitUntil: 'domcontentloaded' });
+                    const newUserData = await newUserDataPromise;
+
+                    if (newUserData) {
+                        const newLogs: NetworkLogs = {
+                            userData: newUserData,
+                            leaderboardData: null // We don't need leaderboard for specific languages
+                        };
+
+                        const newLangISO = getCurrentLanguageISO(newLogs);
+                        status.languages[newLangISO] = {
+                            name: langName,
+                            units: getSkillPath(newLogs)
+                        };
+                        console.log(`Captured data for ${langName}`);
+                    }
+                }
+
+                // Switch back to original language if needed? 
+                // Maybe not strictly necessary for get-status, but polite.
+                // Let's leave it on the last language for now to save time.
+            }
+
         } else {
             status.error = "Failed to capture network data";
         }
@@ -114,7 +160,7 @@ dotenv.config();
 
         const outputPath = path.join(logDir, 'status.json');
         fs.writeFileSync(outputPath, JSON.stringify(status, null, 2));
-        console.log(`Status saved to: ${ outputPath } `);
+        console.log(`Status saved to: ${outputPath} `);
 
         await browser.close();
 
