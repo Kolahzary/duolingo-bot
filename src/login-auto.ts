@@ -26,9 +26,28 @@ dotenv.config();
     const logDir = createLogDirectory('login-auto');
     console.log(`Log directory: ${logDir}`);
 
-    const context = await browser.newContext({
+    // Check for --no-cache flag
+    const args = process.argv.slice(2);
+    const noCache = args.includes('--no-cache');
+
+    if (noCache) {
+        console.log('🧹 --no-cache flag detected. Clearing existing session state...');
+        if (fs.existsSync(storageStatePath)) {
+            fs.unlinkSync(storageStatePath);
+            console.log('Existing state file deleted.');
+        }
+    }
+
+    const contextOptions: any = {
         viewport: { width: 1280, height: 720 },
-    });
+    };
+
+    if (!noCache && fs.existsSync(storageStatePath)) {
+        console.log(`📂 Found existing state at: ${storageStatePath}`);
+        contextOptions.storageState = storageStatePath;
+    }
+
+    const context = await browser.newContext(contextOptions);
     const page = await context.newPage();
     await startNetworkLogging(page, logDir);
 
@@ -50,11 +69,14 @@ dotenv.config();
         }
 
         if (await isLoggedIn(page)) {
-            console.log('Already logged in!');
+            console.log('✅ Already logged in!');
+            // Ensure state is saved/updated even if we just loaded it, to keep it fresh if needed
             await context.storageState({ path: storageStatePath });
-            console.log(`State saved to: ${storageStatePath}`);
+            console.log(`State saved/verified at: ${storageStatePath}`);
             await browser.close();
             process.exit(0);
+        } else {
+            console.log('Not logged in (or session expired). Proceeding with login...');
         }
 
         console.log('Clicking "I ALREADY HAVE AN ACCOUNT"...');

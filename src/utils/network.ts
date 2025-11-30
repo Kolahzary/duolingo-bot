@@ -93,7 +93,7 @@ function sanitizeObject(obj: any): any {
         return obj.map(item => sanitizeObject(item));
     }
 
-    const sensitiveKeys = ['password', 'identifier', 'token', 'email', 'jwt', 'shopitems'];
+    const sensitiveKeys = ['password', 'identifier', 'token', 'email', 'jwt', 'shopitems', 'username', 'recommendations'];
     const sanitized: any = {};
 
     for (const key in obj) {
