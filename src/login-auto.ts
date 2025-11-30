@@ -2,6 +2,7 @@ import { chromium } from 'playwright';
 import dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
 import { isLoggedIn, getStatePath } from './utils/auth.js';
+import { startNetworkLogging } from './utils/network.js';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -29,6 +30,7 @@ dotenv.config();
         viewport: { width: 1280, height: 720 },
     });
     const page = await context.newPage();
+    await startNetworkLogging(page, logDir);
 
     try {
         console.log('Navigating to Duolingo...');

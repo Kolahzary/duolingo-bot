@@ -42,16 +42,17 @@ export async function startNetworkLogging(page: Page, logDir: string) {
                 }
 
                 const request = response.request();
+                const requestPostData = sanitize(request.postData());
 
                 const entry: NetworkLogEntry = {
                     timestamp: new Date().toISOString(),
                     url: url,
                     method: request.method(),
-                    requestHeaders: request.headers(),
-                    requestPostData: request.postData(),
+                    requestHeaders: sanitizeHeaders(request.headers()),
+                    requestPostData: requestPostData,
                     responseStatus: response.status(),
-                    responseHeaders: response.headers(),
-                    responseBody: responseBody
+                    responseHeaders: sanitizeHeaders(response.headers()),
+                    responseBody: sanitizeObject(responseBody)
                 };
 
                 logs.push(entry);
@@ -69,6 +70,58 @@ export async function startNetworkLogging(page: Page, logDir: string) {
             console.error('Error logging network response:', e);
         }
     });
+}
+
+function sanitize(data: string | null): string | null {
+    if (!data) return null;
+    try {
+        const json = JSON.parse(data);
+        const sanitized = sanitizeObject(json);
+        return JSON.stringify(sanitized);
+    } catch (e) {
+        // Not JSON or failed to parse, keep original
+    }
+    return data;
+}
+
+function sanitizeObject(obj: any): any {
+    if (typeof obj !== 'object' || obj === null) {
+        return obj;
+    }
+
+    if (Array.isArray(obj)) {
+        return obj.map(item => sanitizeObject(item));
+    }
+
+    const sensitiveKeys = ['password', 'identifier', 'token', 'email', 'jwt', 'shopitems'];
+    const sanitized: any = {};
+
+    for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            const lowerKey = key.toLowerCase();
+            if (sensitiveKeys.includes(lowerKey) || lowerKey.includes('jwt')) {
+                sanitized[key] = '[REDACTED]';
+            } else {
+                sanitized[key] = sanitizeObject(obj[key]);
+            }
+        }
+    }
+
+    return sanitized;
+}
+
+function sanitizeHeaders(headers: Record<string, string>): Record<string, string> {
+    const sensitiveHeaders = ['authorization', 'cookie', 'set-cookie', 'jwt'];
+    const sanitized: Record<string, string> = {};
+
+    for (const [key, value] of Object.entries(headers)) {
+        if (sensitiveHeaders.includes(key.toLowerCase()) || key.toLowerCase().includes('jwt')) {
+            sanitized[key] = '[REDACTED]';
+        } else {
+            sanitized[key] = value;
+        }
+    }
+    return sanitized;
 }
 
 /**
