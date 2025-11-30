@@ -8,6 +8,7 @@ import { startNetworkLogging, captureUserData } from './utils/network.js';
 import { solveVisibleTokens } from './utils/solver.js';
 import { startWordsLesson } from './utils/navigation.js';
 import { getCurrentLanguage, selectLanguage } from './utils/homepage.js';
+import { getBrowserConfig, getContextOptions } from './utils/browser.js';
 
 dotenv.config();
 
@@ -21,14 +22,14 @@ dotenv.config();
         process.exit(1);
     }
 
-    const browser = await chromium.launch({ headless: false });
+    const browser = await chromium.launch(getBrowserConfig());
     const logDir = createLogDirectory('practice');
     let page: Page | null = null;
 
     try {
         const context = await browser.newContext({
+            ...getContextOptions(),
             storageState: storageStatePath,
-            viewport: { width: 1280, height: 720 },
         });
         page = await context.newPage();
 

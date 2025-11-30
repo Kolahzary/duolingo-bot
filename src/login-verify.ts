@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
 import { isLoggedIn, getStatePath } from './utils/auth.js';
+import { getBrowserConfig, getContextOptions } from './utils/browser.js';
 import * as path from 'path';
 
 dotenv.config();
@@ -13,21 +14,19 @@ dotenv.config();
     const storageStatePath = getStatePath();
     if (!fs.existsSync(storageStatePath)) {
         console.error('❌ No saved state found at:', storageStatePath);
-        console.log('Run "npm run login-manual" or "npm run login-auto" first.');
+        console.log('Run "pnpm run login-manual" or "pnpm run login-auto" first.');
         process.exit(1);
     }
 
-    const browser = await chromium.launch({
-        headless: true, // Headless is fine for verification
-    });
+    const browser = await chromium.launch(getBrowserConfig());
 
     const logDir = createLogDirectory('login-verify');
     console.log(`Log directory: ${logDir}`);
 
     try {
         const context = await browser.newContext({
+            ...getContextOptions(),
             storageState: storageStatePath,
-            viewport: { width: 1280, height: 720 },
         });
         const page = await context.newPage();
 

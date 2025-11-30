@@ -2,23 +2,26 @@ import { chromium } from 'playwright';
 import dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
 import { isLoggedIn, getStatePath } from './utils/auth.js';
+import { getBrowserConfig, getContextOptions } from './utils/browser.js';
 import * as path from 'path';
 
 dotenv.config();
 
 (async () => {
     console.log('Initializing browser for manual login...');
-    const browser = await chromium.launch({
-        headless: false,
-    });
+    // Manual login usually needs headful mode, but we can respect the config or force headful if needed.
+    // The user likely wants to see the browser for manual login.
+    // Let's override headless to false for manual login regardless of env, or respect it?
+    // "login-manual" implies interaction.
+    const config = getBrowserConfig();
+    config.headless = false; // Force headful for manual interaction
+    const browser = await chromium.launch(config);
 
     const storageStatePath = getStatePath();
     const logDir = createLogDirectory('login-manual');
-    console.log(`Log directory: ${logDir}`);
+    console.log(`Log directory: ${logDir} `);
 
-    const context = await browser.newContext({
-        viewport: { width: 1280, height: 720 },
-    });
+    const context = await browser.newContext(getContextOptions());
     const page = await context.newPage();
 
     let loggedIn = false;
@@ -47,7 +50,7 @@ dotenv.config();
 
                 // Save state
                 await context.storageState({ path: storageStatePath });
-                console.log(`State saved to: ${storageStatePath}`);
+                console.log(`State saved to: ${storageStatePath} `);
 
                 loggedIn = true;
 

@@ -2,26 +2,26 @@ import { chromium } from 'playwright';
 import dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
 import { getStatePath } from './utils/auth.js';
+import { getBrowserConfig, getContextOptions } from './utils/browser.js';
 import * as fs from 'fs';
 
 dotenv.config();
 
 (async () => {
     console.log('Starting browser for manual interaction...');
-    const browser = await chromium.launch({
-        headless: false,
-    });
+    const config = getBrowserConfig();
+    config.headless = false; // Force headful for manual interaction
+    const browser = await chromium.launch(config);
 
     const storageStatePath = getStatePath();
     const logDir = createLogDirectory('start-manual');
-    console.log(`Log directory: ${logDir}`);
+    console.log(`Log directory: ${logDir} `);
 
-    const contextOptions: any = {
-        viewport: { width: 1280, height: 720 },
-    };
+    const baseContextOptions = getContextOptions();
+    const contextOptions: any = { ...baseContextOptions };
 
     if (fs.existsSync(storageStatePath)) {
-        console.log(`Loading state from: ${storageStatePath}`);
+        console.log(`Loading state from: ${storageStatePath} `);
         contextOptions.storageState = storageStatePath;
     } else {
         console.log('No saved state found. Starting with fresh session.');

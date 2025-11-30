@@ -2,6 +2,7 @@ import { chromium } from 'playwright';
 import dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
 import { isLoggedIn, getStatePath, ensureStateExists } from './utils/auth.js';
+import { getBrowserConfig, getContextOptions } from './utils/browser.js';
 import { startNetworkLogging } from './utils/network.js';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -13,10 +14,7 @@ dotenv.config();
     const password = process.env.DUOLINGO_PASSWORD;
 
     console.log('Initializing browser for auto login...');
-    const isHeadless = process.env.HEADLESS === 'true' || process.env.CI === 'true';
-    const browser = await chromium.launch({
-        headless: isHeadless,
-    });
+    const browser = await chromium.launch(getBrowserConfig());
 
     const storageStatePath = getStatePath();
     const logDir = createLogDirectory('login-auto');
@@ -34,10 +32,7 @@ dotenv.config();
         }
     }
 
-    const contextOptions: any = {
-        viewport: { width: 1280, height: 720 },
-        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    };
+    const contextOptions: any = getContextOptions();
 
     if (!forceLogin) {
         // Check for state or encrypted backup

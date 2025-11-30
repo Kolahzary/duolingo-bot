@@ -1,6 +1,8 @@
-name: Auto Login
+name: Streak keeper
 
 on:
+  schedule:
+    - cron: '15 1,7,14,20 * * *'
   push:
     branches:
       - main
@@ -37,8 +39,9 @@ jobs:
           restore-keys: |
             state-${{ runner.os }}-
 
-      - name: Run Auto Login
+      - name: Run Practice
         env:
           ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+          PRACTICE_LANGUAGE: Turkish
           HEADLESS: true
-        run: pnpm login-auto
+        run: pnpm practice

@@ -3,7 +3,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
-import { isLoggedIn, getStatePath, waitForLogin } from './utils/auth.js';
+import { getStatePath, waitForLogin } from './utils/auth.js';
+import { getBrowserConfig, getContextOptions } from './utils/browser.js';
 import {
     getGems,
     getStreak,
@@ -30,17 +31,14 @@ dotenv.config();
         process.exit(1);
     }
 
-    const browser = await chromium.launch({
-        headless: true,
-    });
-
+    const browser = await chromium.launch(getBrowserConfig());
     const logDir = createLogDirectory('get-status');
     console.log(`Log directory: ${logDir} `);
 
     try {
         const context = await browser.newContext({
+            ...getContextOptions(),
             storageState: storageStatePath,
-            viewport: { width: 1280, height: 720 },
         });
         const page = await context.newPage();
 
@@ -58,7 +56,7 @@ dotenv.config();
         const loggedIn = await waitForLogin(page);
 
         if (!loggedIn) {
-            console.error('❌ Not logged in. Please run "npm run login-manual" or "npm run login-auto".');
+            console.error('❌ Not logged in. Please run "pnpm run login-manual" or "pnpm run login-auto".');
             await page.screenshot({ path: path.join(logDir, 'not_logged_in.png') });
             await browser.close();
             process.exit(1);
