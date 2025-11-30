@@ -11,8 +11,8 @@ A Playwright-based bot to automate Duolingo interactions and maintain your strea
 
 ## Prerequisites
 
-- Node.js (v18 or higher)
-- pnpm
+- Node.js (v24 or higher) - managed via `fnm`
+- pnpm - managed via `corepack`
 
 ## Setup
 
