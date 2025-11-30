@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
-import { isLoggedIn, getStatePath } from './utils/auth.js';
+import { isLoggedIn, getStatePath, ensureStateExists } from './utils/auth.js';
 import { startNetworkLogging } from './utils/network.js';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -11,11 +11,6 @@ dotenv.config();
 (async () => {
     const username = process.env.DUOLINGO_USERNAME || process.env.DUOLINGO_EMAIL;
     const password = process.env.DUOLINGO_PASSWORD;
-
-    if (!username || !password) {
-        console.error('❌ Error: DUOLINGO_EMAIL (or DUOLINGO_USERNAME) and DUOLINGO_PASSWORD must be set in .env file');
-        process.exit(1);
-    }
 
     console.log('Initializing browser for auto login...');
     const isHeadless = process.env.HEADLESS === 'true' || process.env.CI === 'true';
@@ -44,9 +39,13 @@ dotenv.config();
         userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     };
 
-    if (!forceLogin && fs.existsSync(storageStatePath)) {
-        console.log(`📂 Found existing state at: ${storageStatePath}`);
-        contextOptions.storageState = storageStatePath;
+    if (!forceLogin) {
+        // Check for state or encrypted backup
+        const validStatePath = ensureStateExists();
+        if (validStatePath) {
+            console.log(`📂 Found existing state at: ${validStatePath}`);
+            contextOptions.storageState = validStatePath;
+        }
     }
 
     const context = await browser.newContext(contextOptions);
@@ -79,6 +78,13 @@ dotenv.config();
             process.exit(0);
         } else {
             console.log('Not logged in (or session expired). Proceeding with login...');
+
+            if (!username || !password) {
+                console.error('❌ Error: Not logged in, and DUOLINGO_EMAIL/PASSWORD are not set in .env file.');
+                console.error('Please set them to allow re-login.');
+                await browser.close();
+                process.exit(1);
+            }
         }
 
         console.log('Clicking "I ALREADY HAVE AN ACCOUNT"...');

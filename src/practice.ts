@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
-import { getStatePath, waitForLogin } from './utils/auth.js';
+import { getStatePath, waitForLogin, ensureStateExists } from './utils/auth.js';
 import { startNetworkLogging, captureUserData } from './utils/network.js';
 import { solveVisibleTokens } from './utils/solver.js';
 import { startWordsLesson } from './utils/navigation.js';
@@ -15,7 +15,8 @@ dotenv.config();
     console.log('Starting practice session...');
 
     const storageStatePath = getStatePath();
-    if (!fs.existsSync(storageStatePath)) {
+    const validStatePath = ensureStateExists();
+    if (!validStatePath) {
         console.error('❌ No saved state found. Please login first.');
         process.exit(1);
     }

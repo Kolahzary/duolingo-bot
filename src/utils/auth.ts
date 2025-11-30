@@ -2,6 +2,7 @@ import { Page } from 'playwright';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { decryptFile } from './crypto.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,6 +26,29 @@ export function ensureStateDir(): string {
         fs.mkdirSync(stateDir, { recursive: true });
     }
     return stateDir;
+}
+
+export function ensureStateExists(): string | null {
+    const stateDir = ensureStateDir();
+    const statePath = path.join(stateDir, 'storageState.json');
+    const binPath = path.join(__dirname, '../../assets/state.bin');
+
+    if (fs.existsSync(statePath)) {
+        return statePath;
+    }
+
+    if (fs.existsSync(binPath)) {
+        console.log('ℹ️  State file missing, but encrypted backup found. Decrypting...');
+        try {
+            decryptFile(binPath, statePath);
+            return statePath;
+        } catch (e) {
+            console.error('❌ Failed to decrypt state:', e);
+            return null;
+        }
+    }
+
+    return null;
 }
 
 export function getStatePath(): string {

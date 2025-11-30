@@ -14,7 +14,9 @@
     "start-manual": "npm run exec-script src/start-manual.ts",
     "get-status": "npm run exec-script src/get-status.ts",
     "switch-language": "npm run exec-script src/switch-language.ts",
-    "practice": "npm run exec-script src/practice.ts"
+    "practice": "npm run exec-script src/practice.ts",
+    "encrypt-state": "npm run exec-script src/scripts/encrypt-state.ts",
+    "decrypt-state": "npm run exec-script src/scripts/decrypt-state.ts"
   },
   "keywords": [],
   "author": "Shadman Kolahzary",

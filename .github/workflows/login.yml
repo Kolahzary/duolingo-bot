@@ -39,7 +39,6 @@ jobs:
 
       - name: Run Auto Login
         env:
-          DUOLINGO_EMAIL: ${{ secrets.DUOLINGO_EMAIL }}
-          DUOLINGO_PASSWORD: ${{ secrets.DUOLINGO_PASSWORD }}
+          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
           HEADLESS: true
         run: pnpm login-auto
