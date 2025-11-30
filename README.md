@@ -1,5 +1,7 @@
 # Duolingo Bot
 
+![Duolingo Slavery No More](docs/duolingo-slavery-no-more.png)
+
 A Playwright-based bot to automate Duolingo interactions and maintain your streak.
 
 ## Motivation
