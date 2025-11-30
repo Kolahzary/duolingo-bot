@@ -10,6 +10,33 @@ The app transforms from a helpful educational tool into a source of anxiety, whe
 
 Consider this your path to freedom. Keep your streak, but reclaim your time.
 
+## TLDR; How can I automate my streak protection?
+
+1.  **Fork the repository** and clone your fork locally.
+2.  **Authenticate**: Follow the [Secure Authentication Setup](#secure-authentication-setup) guide below to generate your encrypted state.
+3.  **Configure Schedule**: Optionally, customize the cron schedule in `.github/workflows/streak-keeper.yml` to run whenever you like.
+
+### Secure Authentication Setup
+
+To run the bot in GitHub Actions, you need to securely provide your authentication state.
+
+1.  **Generate an ENCRYPTION_KEY secret**:
+    - Generate a strong password (at least 32 characters).
+    - Save it in your GitHub repository's **Settings > Secrets and variables > Actions** as `ENCRYPTION_KEY`.
+    - Also add it to your local `.env` file.
+
+2.  **Login locally**:
+    - Run `pnpm run login-manual` to log in to Duolingo.
+    - This will verify your credentials and save your session state locally.
+
+3.  **Encrypt your state**:
+    - Run `pnpm run encrypt-state` to generate an encrypted version of your session (`assets/state.bin`).
+    - This file is safe to commit because it can only be decrypted with your `ENCRYPTION_KEY`.
+
+4.  **Push your changes**:
+    - Commit and push the generated `assets/state.bin` to your repository.
+
+
 ## Features
 
 - **Auto Login**: Automatically logs in using credentials from `.env`.
@@ -125,6 +152,17 @@ Decrypt `assets/state.bin` to `state/storageState.json`. Useful if you are resto
 ```bash
 pnpm run decrypt-state
 ```
+
+## Security
+
+Your account security is paramount. If you follow the instructions above, your account is safe.
+
+-   **Encryption**: The `state.bin` file is encrypted using AES-256-GCM, a military-grade encryption standard.
+-   **Private Key**: It can **only** be decrypted using your unique `ENCRYPTION_KEY`.
+-   **No Exposure**: This key exists only on your local machine and in your private GitHub Secrets. It is never committed to the repository.
+
+Even if someone forks your repository or downloads your `state.bin`, they **cannot** access your Duolingo account without your private key.
+
 
 ## Project Structure
 
