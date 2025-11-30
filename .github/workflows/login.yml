@@ -1,0 +1,45 @@
+name: Auto Login
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  login:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: corepack enable && pnpm install
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium
+
+      - name: Restore/Save State Cache
+        uses: actions/cache@v4
+        with:
+          path: state
+          # Use run_id to ensure we always save a new cache entry with the updated state
+          key: state-${{ runner.os }}-${{ github.run_id }}
+          # Restore from the most recent cache with this prefix
+          restore-keys: |
+            state-${{ runner.os }}-
+
+      - name: Run Auto Login
+        env:
+          DUOLINGO_EMAIL: ${{ secrets.DUOLINGO_EMAIL }}
+          DUOLINGO_PASSWORD: ${{ secrets.DUOLINGO_PASSWORD }}
+          HEADLESS: true
+        run: pnpm login-auto

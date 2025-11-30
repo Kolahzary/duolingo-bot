@@ -18,20 +18,21 @@ dotenv.config();
     }
 
     console.log('Initializing browser for auto login...');
+    const isHeadless = process.env.HEADLESS === 'true' || process.env.CI === 'true';
     const browser = await chromium.launch({
-        headless: false, // Keep visible for debugging/verification
+        headless: isHeadless,
     });
 
     const storageStatePath = getStatePath();
     const logDir = createLogDirectory('login-auto');
     console.log(`Log directory: ${logDir}`);
 
-    // Check for --no-cache flag
+    // Check for --force-login flag or FORCE_LOGIN env var
     const args = process.argv.slice(2);
-    const noCache = args.includes('--no-cache');
+    const forceLogin = args.includes('--force-login') || args.includes('--no-cache') || process.env.FORCE_LOGIN === 'true';
 
-    if (noCache) {
-        console.log('🧹 --no-cache flag detected. Clearing existing session state...');
+    if (forceLogin) {
+        console.log('🧹 --force-login flag detected. Clearing existing session state...');
         if (fs.existsSync(storageStatePath)) {
             fs.unlinkSync(storageStatePath);
             console.log('Existing state file deleted.');
@@ -40,9 +41,10 @@ dotenv.config();
 
     const contextOptions: any = {
         viewport: { width: 1280, height: 720 },
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     };
 
-    if (!noCache && fs.existsSync(storageStatePath)) {
+    if (!forceLogin && fs.existsSync(storageStatePath)) {
         console.log(`📂 Found existing state at: ${storageStatePath}`);
         contextOptions.storageState = storageStatePath;
     }
@@ -53,7 +55,7 @@ dotenv.config();
 
     try {
         console.log('Navigating to Duolingo...');
-        await page.goto('https://www.duolingo.com/', { waitUntil: 'domcontentloaded' });
+        await page.goto('https://www.duolingo.com/');
         await page.screenshot({ path: path.join(logDir, '01_home.png') });
 
         // Handle Cookie Banner
@@ -83,22 +85,27 @@ dotenv.config();
         // The button usually says "I ALREADY HAVE AN ACCOUNT"
         // We can look for the test id or text.
         // Based on common Duolingo flows, it's often [data-test="have-account"]
-        await page.click('[data-test="have-account"]');
+        await page.locator('[data-test="have-account"]').click({
+            steps: 10
+        });
 
         console.log('Waiting for login form...');
         // Wait for email/password inputs
         await page.waitForSelector('[data-test="email-input"]');
         await page.screenshot({ path: path.join(logDir, '02_login_form.png') });
 
+
         console.log('Filling credentials...');
-        await page.fill('[data-test="email-input"]', username);
-        await page.fill('[data-test="password-input"]', password);
+        const usernameField = page.locator('[data-test="email-input"]');
+        const passwordField = page.locator('[data-test="password-input"]');
+        await usernameField.pressSequentially(username, { delay: 80 });
+        await passwordField.pressSequentially(password, { delay: 120 });
 
         console.log('Submitting login...');
 
         // Try to find the login button. It might be "register-button" or "login-button"
         const loginButton = page.locator('[data-test="login-button"]').or(page.locator('[data-test="register-button"]'));
-        await loginButton.first().click();
+        await loginButton.first().click({ steps: 10 });
 
         console.log('Waiting for login to complete...');
 
