@@ -158,7 +158,7 @@ export async function captureLeaderboardData(page: Page, timeoutMs: number = 750
  * Capture session data from network responses
  * Sets up network interception and waits for session data to be captured
  */
-export async function captureSessionData(page: Page, timeoutMs: number = 15000): Promise<any | null> {
+export async function captureSessionData(page: Page, timeoutMs: number = 15000, expectedType = "SPECIFIED_MATCH_PRACTICE"): Promise<any | null> {
     return new Promise((resolve) => {
         let sessionData: any = null;
         let resolved = false;
@@ -172,9 +172,15 @@ export async function captureSessionData(page: Page, timeoutMs: number = 15000):
                     const json = await response.json();
                     if (json.challenges) {
                         sessionData = json;
-                        resolved = true;
-                        page.off('response', responseHandler);
-                        resolve(sessionData);
+
+                        if (sessionData.type == expectedType) {
+                            console.log("Session data captured");
+                            resolved = true;
+                            page.off('response', responseHandler);
+                            resolve(sessionData);
+                        } else {
+                            console.log(`Session data captured, but not expected type: ${sessionData.type}`);
+                        }
                     }
                 } catch (e) {
                     // Ignore parse errors

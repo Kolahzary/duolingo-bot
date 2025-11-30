@@ -27,24 +27,24 @@ export async function getChallengeType(page: Page): Promise<ChallengeType> {
  * Solves visible tokens on the page using Self-Match and Session-Match strategies.
  * Returns true if an action was taken (tokens clicked), false otherwise.
  */
-export async function solveVisibleTokens(page: Page, sessionData: Session): Promise<boolean> {
+export async function solveVisibleTokens(page: Page, sessionData: Session): Promise<number> {
     const challengeType = await getChallengeType(page);
     if (challengeType === 'none') {
         console.error('No challenge type found');
-        return false;
+        return 0;
     } else {
         console.log(`Challenge type: ${challengeType}`);
     }
 
     if (['match', 'extendedMatch'].includes(challengeType)) {
-        return await solveMatchChallenge(page, sessionData) > 0;
+        return await solveMatchChallenge(page, sessionData);
     } else if (challengeType === 'extendedListenMatch') {
-        return await solveExtendedListenMatchChallenge(page, sessionData) > 0;
+        return await solveExtendedListenMatchChallenge(page, sessionData);
     } else {
         console.error(`Unsupported challenge type: ${challengeType}`);
     }
 
-    return false;
+    return 0;
 }
 
 export async function solveMatchChallenge(page: Page, sessionData: Session): Promise<number> {

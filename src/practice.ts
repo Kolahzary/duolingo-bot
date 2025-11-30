@@ -4,10 +4,10 @@ import * as path from 'path';
 import * as dotenv from 'dotenv';
 import { createLogDirectory } from './utils/logger.js';
 import { getStatePath, waitForLogin } from './utils/auth.js';
-import { startNetworkLogging, captureSessionData } from './utils/network.js';
-import { Session } from './interfaces/index.js';
+import { startNetworkLogging, captureUserData } from './utils/network.js';
 import { solveVisibleTokens } from './utils/solver.js';
 import { startWordsLesson } from './utils/navigation.js';
+import { getCurrentLanguage, selectLanguage } from './utils/homepage.js';
 
 dotenv.config();
 
@@ -33,6 +33,7 @@ dotenv.config();
 
         await startNetworkLogging(page, logDir);
 
+        const userDataPromise = captureUserData(page);
         await page.goto('https://www.duolingo.com/learn', { waitUntil: 'domcontentloaded' });
 
         if (!await waitForLogin(page)) {
@@ -41,13 +42,26 @@ dotenv.config();
             process.exit(1);
         }
 
-        const sessionDataPromise = captureSessionData(page, 30000);
+        const userData = await userDataPromise;
+        if (!userData) {
+            console.error('❌ Failed to capture user data.');
+            await browser.close();
+            process.exit(1);
+        }
 
-        // Use the new navigation utility
-        await startWordsLesson(page);
+        // Language Switch Logic
+        const targetLanguage = process.env.PRACTICE_LANGUAGE;
+        if (targetLanguage) {
+            const currentLanguage = getCurrentLanguage({ userData, leaderboardData: null });
 
-        console.log('Waiting for session data...');
-        const sessionData: Session = await sessionDataPromise;
+            if (currentLanguage !== targetLanguage) {
+                console.log(`Current language: ${currentLanguage}`);
+                console.log(`Switching to ${targetLanguage}...`);
+                await selectLanguage(page, targetLanguage);
+            }
+        }
+
+        const sessionData = await startWordsLesson(page);
         if (!sessionData || !sessionData.challenges) {
             console.error('❌ Failed to capture session data.');
             await browser.close();
@@ -59,26 +73,21 @@ dotenv.config();
         // Identify and Solve Loop
         while (true) {
             try {
+                // // 1. Try to click "Continue" button (End of session or next section)
+                const continueButton = page.locator('[data-test="player-next"]');
+                if (await continueButton.isVisible()) {
+                    await continueButton.click();
+                }
+
                 // 2. Solve visible tokens
-                const actionTaken = await solveVisibleTokens(page, sessionData);
+                const solvedCount = await solveVisibleTokens(page, sessionData);
+                console.log(`Solved ${solvedCount} tokens.`);
 
-                if (!actionTaken) {
-                    // 1. Try to click "Continue" button (End of session or next section)
-                    const continueButton = page.locator('[data-test="player-next"]');
-                    if (await continueButton.isVisible()) {
-                        await continueButton.click();
-                    }
-
-                    // Check for Start button directly
-                    const startButton = page.getByRole('button', { name: /START|REVIEW/i });
-                    if (await startButton.isVisible()) {
-                        console.log('Start button detected. Session complete!');
-                        break;
-                    }
-
-                    try {
-                        await page.locator('button[data-test*="-challenge-tap-token"]').first().waitFor({ state: 'visible', timeout: 1000 });
-                    } catch (e) { }
+                // Check for Start button directly
+                const startButton = page.getByRole('button', { name: /START|REVIEW/i });
+                if (await startButton.isVisible()) {
+                    console.log('Start button detected. Session complete!');
+                    break;
                 }
             } catch (e: any) {
                 if (e.message && e.message.includes('Target page, context or browser has been closed')) {

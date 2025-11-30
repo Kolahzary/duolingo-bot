@@ -6,17 +6,18 @@
   "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --loader ts-node/esm --experimental-specifier-resolution=node src/main.ts",
-    "login-manual": "node --loader ts-node/esm --experimental-specifier-resolution=node src/login-manual.ts",
-    "login-auto": "node --loader ts-node/esm --experimental-specifier-resolution=node src/login-auto.ts",
-    "login-verify": "node --loader ts-node/esm --experimental-specifier-resolution=node src/login-verify.ts",
-    "start-manual": "node --loader ts-node/esm --experimental-specifier-resolution=node src/start-manual.ts",
-    "get-status": "node --loader ts-node/esm --experimental-specifier-resolution=node src/get-status.ts",
-    "switch-language": "node --loader ts-node/esm --experimental-specifier-resolution=node src/switch-language.ts",
-    "practice": "node --loader ts-node/esm --experimental-specifier-resolution=node src/practice.ts"
+    "exec-script": "node --loader ts-node/esm --experimental-specifier-resolution=node",
+    "start": "npm run exec-script src/main.ts",
+    "login-manual": "npm run exec-script src/login-manual.ts",
+    "login-auto": "npm run exec-script src/login-auto.ts",
+    "login-verify": "npm run exec-script src/login-verify.ts",
+    "start-manual": "npm run exec-script src/start-manual.ts",
+    "get-status": "npm run exec-script src/get-status.ts",
+    "switch-language": "npm run exec-script src/switch-language.ts",
+    "practice": "npm run exec-script src/practice.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Shadman Kolahzary",
   "license": "ISC",
   "dependencies": {
     "@playwright/test": "^1.56.1",
