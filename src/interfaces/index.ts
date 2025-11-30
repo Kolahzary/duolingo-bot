@@ -7,3 +7,4 @@ export * from './user-data.interface.js';
 export * from './leaderboard-data.interface.js';
 export * from './network-logs.interface.js';
 export * from './network-log-entry.interface.js';
+export * from './session.interface.js';

@@ -153,3 +153,44 @@ export async function captureLeaderboardData(page: Page, timeoutMs: number = 750
         }, timeoutMs);
     });
 }
+
+/**
+ * Capture session data from network responses
+ * Sets up network interception and waits for session data to be captured
+ */
+export async function captureSessionData(page: Page, timeoutMs: number = 15000): Promise<any | null> {
+    return new Promise((resolve) => {
+        let sessionData: any = null;
+        let resolved = false;
+
+        const responseHandler = async (response: any) => {
+            if (resolved) return;
+
+            const url = response.url();
+            if (url.includes('/sessions') && response.request().method() === 'POST') {
+                try {
+                    const json = await response.json();
+                    if (json.challenges) {
+                        sessionData = json;
+                        resolved = true;
+                        page.off('response', responseHandler);
+                        resolve(sessionData);
+                    }
+                } catch (e) {
+                    // Ignore parse errors
+                }
+            }
+        };
+
+        page.on('response', responseHandler);
+
+        // Timeout fallback
+        setTimeout(() => {
+            if (!resolved) {
+                resolved = true;
+                page.off('response', responseHandler);
+                resolve(sessionData);
+            }
+        }, timeoutMs);
+    });
+}

@@ -12,7 +12,8 @@
     "login-verify": "node --loader ts-node/esm --experimental-specifier-resolution=node src/login-verify.ts",
     "start-manual": "node --loader ts-node/esm --experimental-specifier-resolution=node src/start-manual.ts",
     "get-status": "node --loader ts-node/esm --experimental-specifier-resolution=node src/get-status.ts",
-    "switch-language": "node --loader ts-node/esm --experimental-specifier-resolution=node src/switch-language.ts"
+    "switch-language": "node --loader ts-node/esm --experimental-specifier-resolution=node src/switch-language.ts",
+    "practice": "node --loader ts-node/esm --experimental-specifier-resolution=node src/practice.ts"
   },
   "keywords": [],
   "author": "",
