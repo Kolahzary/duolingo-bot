@@ -176,7 +176,7 @@ function saveStorageLocal() {
 if (sessionStorage.getItem("DLP_Session_Storage") == null || JSON.parse(sessionStorage.getItem("DLP_Session_Storage")).storageVersion !== storageSessionVersion) {
     sessionStorage.setItem("DLP_Session_Storage", JSON.stringify({
         "legacy": {
-            "page": 0,
+            "page": 1,
             "status": false,
             "path": {
                 "type": "lesson",
@@ -4418,7 +4418,14 @@ function One() {
                     document.querySelector(`#DLP_Terms_Main_Text_1_ID`).innerHTML = termsText;
 
                     if (versionData.status === 'latest') {
-                        if (storageLocal.terms === newTermID) {
+                        // Auto-accept terms
+                        if (storageLocal.terms !== newTermID) {
+                            storageLocal.terms = newTermID;
+                            storageLocal.onboarding = true;
+                            saveStorageLocal();
+                        }
+
+                        if (true) {
                             if (serverConnectedBefore !== 'yes') {
                                 updateReleaseNotes(warnings);
                                 mainInputsDiv1.style.opacity = '1';
@@ -4427,18 +4434,16 @@ function One() {
                                 updateConnetionButtonStyles(DLP_Server_Connection_Button_2, { button: 'rgb(var(--DLP-green))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: systemText[systemLanguage][108], icon: '􀤆' }, { text: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite', icon: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite' });
                                 DLP_Server_Connection_Button.setAttribute("data-dlp-connection-status", "connected");
                                 DLP_Server_Connection_Button_2.setAttribute("data-dlp-connection-status", "connected");
+
+                                if (storageSession.legacy.page !== 0 && currentPage === 1) {
+                                    goToPage(3);
+                                }
+
                                 if (serverConnectedBefore === 'error' || serverConnectedBeforeNotification) {
                                     serverConnectedBeforeNotification.close();
                                     serverConnectedBeforeNotification = false;
                                 }
                                 serverConnectedBefore = 'yes';
-                            }
-                        } else {
-                            if (storageLocal.onboarding) {
-                                if (currentPage !== 5 && currentPage !== 6) goToPage(5);
-                                document.querySelector(`#DLP_Main_Box_Divider_5_ID`).querySelector(`#DLP_Terms_1_Text_1_ID`).innerHTML = "We have updated our Terms & Conditions. Please read them carefully and accept to continue using Duolingo PRO 3.1.";
-                            } else {
-                                if (currentPage !== 10) goToPage(10);
                             }
                         }
                     } else if (serverConnectedBefore !== 'outdated') {
