@@ -50,7 +50,7 @@ To run the bot in GitHub Actions, you need to securely provide your authenticati
 ## Prerequisites
 
 - Node.js (v24 or higher) - managed via `fnm`
-- pnpm - managed via `corepack`
+- pnpm (latest) - managed via `corepack`
 
 ## Setup
 

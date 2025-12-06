@@ -38,6 +38,16 @@ dotenv.config();
 
     try {
         console.log('Navigating to Duolingo...');
+
+        // Inject Duolingo-PRO userscript
+        const scriptPath = 'src/scripts/duolingo-pro.js';
+        if (fs.existsSync(scriptPath)) {
+            console.log(`Injecting userscript from: ${scriptPath}`);
+            await page.addInitScript({ path: scriptPath });
+        } else {
+            console.warn(`Userscript not found at: ${scriptPath}`);
+        }
+
         await page.goto('https://www.duolingo.com/', { waitUntil: 'domcontentloaded' });
         console.log('Browser is open. You can interact with the page.');
         console.log('Close the browser window (or tab) to stop the script.');
