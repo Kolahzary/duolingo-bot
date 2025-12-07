@@ -19,8 +19,8 @@ let storageSessionVersion = "05";
 let versionName = "BETA.03";
 let versionFull = "3.1BETA.03";
 let versionFormal = "3.1 BETA.03";
-let serverURL = "https://www.duolingopro.net";
-let apiURL = "https://api.duolingopro.net";
+let serverURL = "";
+let apiURL = "";
 let greasyfork = true;
 let alpha = false;
 
@@ -214,7 +214,7 @@ function saveStorageSession() {
 }
 
 console.log("Duolingo PRO: Script starting...");
-if (alpha) apiURL = "https://api.duolingopro.net/alpha";
+if (alpha) apiURL = "";
 
 let systemLanguage = 'en';
 try {
@@ -343,7 +343,7 @@ function Two() {
     CSS1 = `
 @font-face {
     font-family: 'Duolingo PRO Rounded';
-    src: url(${serverURL}/static/fonts/V7R100DB1/Duolingo-PRO-Rounded-Semibold.woff2) format('woff2');
+    src: local('Arial');
     font-weight: 600;
 }
 
@@ -427,11 +427,11 @@ function Two() {
 <div class="DLP_Main">
     <div class="DLP_HStack_8" style="align-self: flex-end;">
         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Switch_Legacy_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px);">
-            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">􀱏</p>
+            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">🏛️</p>
             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue)); white-space: nowrap;">${systemText[systemLanguage][1]}</p>
         </div>
         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Hide_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10); flex: none; backdrop-filter: blur(16px);">
-            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">􀋮</p>
+            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">👁️</p>
             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][2]}</p>
         </div>
     </div>
@@ -441,10 +441,10 @@ function Two() {
                 <div class="DLP_VStack_8">
                     <div class="DLP_HStack_8">
                         <div id="DLP_Main_1_Server_Connection_Button_1_ID" class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgb(var(--color-eel), 0.20); outline-offset: -2px; background: rgb(var(--color-eel), 0.10); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.32, 1), background 0.8s cubic-bezier(0.16, 1, 0.32, 1), outline 0.8s cubic-bezier(0.16, 1, 0.32, 1), filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1); padding: 10px 0px 10px 10px;">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--color-eel));">􀓞</p>
+                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--color-eel));">🔗</p>
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--color-eel));">${systemText[systemLanguage][3]}</p>
                         </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Donate_Button_1_ID" onclick="window.open('https://duolingopro.net/donate', '_blank');" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; padding: 10px 0px 10px 10px;">
+                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Donate_Button_1_ID" onclick="window.open('https://duolingopro.net/donate', '_blank');" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: lightgray; padding: 10px 0px 10px 10px;">
                             <svg width="17" height="19" viewBox="0 0 17 19" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.5 5.90755C16.4968 3.60922 14.6997 1.72555 12.5913 1.04588C9.97298 0.201877 6.51973 0.324211 4.01956 1.49921C0.989301 2.92355 0.0373889 6.04355 0.00191597 9.15522C-0.0271986 11.7136 0.229143 18.4517 4.04482 18.4997C6.87998 18.5356 7.30214 14.8967 8.61397 13.1442C9.5473 11.8974 10.749 11.5452 12.2284 11.1806C14.7709 10.5537 16.5037 8.55506 16.5 5.90755Z"/>
                             </svg>
@@ -453,17 +453,17 @@ function Two() {
                     </div>
                     <div class="DLP_HStack_8">
                         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Feedback_1_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px);">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">􂄺</p>
+                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">💬</p>
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][5]}</p>
                         </div>
                         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Settings_1_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px);">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">􀍟</p>
+                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">⚙️</p>
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][6]}</p>
                         </div>
                     </div>
                     <div class="DLP_HStack_8">
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Earn_Button_1_ID" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; padding: 10px 0px 10px 10px;">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀋦</p>
+                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Earn_Button_1_ID" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: lightgray; padding: 10px 0px 10px 10px;">
+                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🚀</p>
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">Boost</p>
                         </div>
                         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_YouTube_Button_1_ID" onclick="window.open('https://duolingopro.net/youtube', '_blank');" style="justify-content: center; flex: none; width: 40px; padding: 10px; outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-pink));">
@@ -486,9 +486,9 @@ function Two() {
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div class="DLP_HStack_4">
                         <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="margin-top: 2px; font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="margin-top: 2px; font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <p id="DLP_Main_Warning_1_ID" class="DLP_Text_Style_1" style="transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); text-align: center; opacity: 0.5; display: none;"></p>
                 <div class="DLP_VStack_8" id="DLP_Main_Inputs_1_Divider_1_ID" style="opacity: 0.5; pointer-events: none; transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);">
@@ -496,12 +496,12 @@ function Two() {
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][8]}</p>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Style_1_Active">
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">􀆃</p>
+                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">#️⃣</p>
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][9]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -514,12 +514,12 @@ function Two() {
                                     <path opacity="0.5" d="M24 0H60L36 48H0L24 0Z" fill="rgb(var(--DLP-blue))"/>
                                     <path opacity="0.5" d="M108 0H120L96 48H84L108 0Z" fill="rgb(var(--DLP-blue))"/>
                                 </svg>
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">􀆃</p>
+                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">#️⃣</p>
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][9]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -528,7 +528,7 @@ function Two() {
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID" style="flex: 1 0 0;">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][13]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -537,7 +537,7 @@ function Two() {
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID" style="flex: 1 0 0;">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][13]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -545,12 +545,12 @@ function Two() {
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">How many Streak Freezes would you like to get?</p>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Style_1_Active">
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">􀆃</p>
+                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">#️⃣</p>
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][9]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -558,12 +558,12 @@ function Two() {
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">How many days would you like to increase your Streak by?</p>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Style_1_Active">
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">􀆃</p>
+                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">#️⃣</p>
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][9]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -572,13 +572,13 @@ function Two() {
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID" style="flex: 1 0 0;">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][229]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
                     <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_See_More_1_Button_1_ID" style="outline: rgba(var(--DLP-blue), 0.2) solid 2px; outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px); transform: translate(0px, 0px) scale(1); align-self: stretch; justify-content: space-between;">
                         <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][15]}</p>
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">􀯻</p>
+                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">➡️</p>
                     </div>
                 </div>
                 <div class="DLP_HStack_Auto" style="padding-top: 4px;">
@@ -597,33 +597,33 @@ function Two() {
             <div class="DLP_VStack_8">
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div class="DLP_HStack_4 DLP_Hover_1" id="DLP_Universal_Back_1_Button_1_ID">
-                        <p class="DLP_Text_Style_2" style="font-size: 20px;">􀯶</p>
+                        <p class="DLP_Text_Style_2" style="font-size: 20px;">⬅️</p>
                         <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <div class="DLP_VStack_8" id="DLP_Main_Inputs_1_Divider_1_ID">
                     <div class="DLP_HStack_8">
                         <div class="DLP_VStack_8" id="DLP_Get_XP_2_ID" style="flex: 1 0 0;">
                             <div class="DLP_HStack_8" style="align-items: center;">
-                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                                 <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][8]}</p>
                             </div>
                             <div class="DLP_HStack_8">
                                 <div class="DLP_Input_Style_1_Active">
-                                    <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">􀆃</p>
+                                    <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">#️⃣</p>
                                     <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                                 </div>
                                 <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                     <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][9]}</p>
-                                    <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                    <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                                 </div>
                             </div>
                         </div>
                         <div class="DLP_VStack_8" id="DLP_Get_GEM_2_ID" style="flex: 1 0 0; align-self: stretch;">
                             <div class="DLP_HStack_8" style="align-items: center;">
-                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                                 <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][10]}</p>
                             </div>
                             <div class="DLP_HStack_8">
@@ -633,12 +633,12 @@ function Two() {
                                         <path opacity="0.5" d="M24 0H60L36 48H0L24 0Z" fill="rgb(var(--DLP-blue))"/>
                                         <path opacity="0.5" d="M108 0H120L96 48H84L108 0Z" fill="rgb(var(--DLP-blue))"/>
                                     </svg>
-                                    <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">􀆃</p>
+                                    <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">#️⃣</p>
                                     <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                                 </div>
                                 <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                     <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][9]}</p>
-                                    <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                    <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                                 </div>
                             </div>
                         </div>
@@ -646,25 +646,25 @@ function Two() {
                     <div class="DLP_HStack_8">
                         <div class="DLP_VStack_8" id="DLP_Get_SUPER_2_ID" style="flex: 1 0 0;">
                             <div class="DLP_HStack_8" style="align-items: center;">
-                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                                 <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][12]}</p>
                             </div>
                             <div class="DLP_HStack_8">
                                 <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID" style="flex: 1 0 0;">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][13]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                                 </div>
                             </div>
                         </div>
                         <div class="DLP_VStack_8" id="DLP_Get_DOUBLE_XP_BOOST_2_ID" style="flex: 1 0 0;">
                             <div class="DLP_HStack_8" style="align-items: center;">
-                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                                 <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">Would you like to redeem an XP Boost?</p>
                             </div>
                             <div class="DLP_HStack_8">
                                 <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID" style="flex: 1 0 0;">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][13]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                                 </div>
                             </div>
                         </div>
@@ -672,33 +672,33 @@ function Two() {
                     <div class="DLP_HStack_8">
                         <div class="DLP_VStack_8" id="DLP_Get_Streak_Freeze_2_ID" style="flex: 1 0 0;">
                             <div class="DLP_HStack_8" style="align-items: center;">
-                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                                 <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">How many Streak Freezes would you like to get?</p>
                             </div>
                             <div class="DLP_HStack_8">
                                 <div class="DLP_Input_Style_1_Active">
-                                    <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">􀆃</p>
+                                    <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">#️⃣</p>
                                     <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                                 </div>
                                 <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                     <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][9]}</p>
-                                    <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                    <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                                 </div>
                             </div>
                         </div>
                         <div class="DLP_VStack_8" id="DLP_Get_Streak_2_ID" style="flex: 1 0 0;">
                             <div class="DLP_HStack_8" style="align-items: center;">
-                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                                 <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">How many days would you like to increase your Streak by?</p>
                             </div>
                             <div class="DLP_HStack_8">
                                 <div class="DLP_Input_Style_1_Active">
-                                    <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">􀆃</p>
+                                    <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">#️⃣</p>
                                     <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                                 </div>
                                 <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                     <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][9]}</p>
-                                    <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                    <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                                 </div>
                             </div>
                         </div>
@@ -706,13 +706,13 @@ function Two() {
                     <div class="DLP_HStack_8">
                         <div class="DLP_VStack_8" id="DLP_Get_Heart_Refill_2_ID" style="flex: 1 0 0;">
                             <div class="DLP_HStack_8" style="align-items: center;">
-                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                                 <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">Would you like to refill your Hearts to full?</p>
                             </div>
                             <div class="DLP_HStack_8">
                                 <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID" style="flex: 1 0 0;">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][229]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                                 </div>
                             </div>
                         </div>
@@ -728,10 +728,10 @@ function Two() {
                 <div class="DLP_VStack_8">
                     <div class="DLP_HStack_8">
                         <div id="DLP_Secondary_1_Server_Connection_Button_1_ID" class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgb(var(--color-eel), 0.20); outline-offset: -2px; background: rgb(var(--color-eel), 0.10); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.32, 1), background 0.8s cubic-bezier(0.16, 1, 0.32, 1), outline 0.8s cubic-bezier(0.16, 1, 0.32, 1), filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1); padding: 10px 0px 10px 10px; opacity: 0.25; pointer-events: none;">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">􀓞</p>
+                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">🔗</p>
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #000; transition: 0.4s;">${systemText[systemLanguage][3]}</p>
                         </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Donate_Button_1_ID" onclick="window.open('https://duolingopro.net/donate', '_blank');" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; padding: 10px 0px 10px 10px;">
+                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Donate_Button_1_ID" onclick="window.open('https://duolingopro.net/donate', '_blank');" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: lightgray; padding: 10px 0px 10px 10px;">
                             <svg width="17" height="19" viewBox="0 0 17 19" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.5 5.90755C16.4968 3.60922 14.6997 1.72555 12.5913 1.04588C9.97298 0.201877 6.51973 0.324211 4.01956 1.49921C0.989301 2.92355 0.0373889 6.04355 0.00191597 9.15522C-0.0271986 11.7136 0.229143 18.4517 4.04482 18.4997C6.87998 18.5356 7.30214 14.8967 8.61397 13.1442C9.5473 11.8974 10.749 11.5452 12.2284 11.1806C14.7709 10.5537 16.5037 8.55506 16.5 5.90755Z"/>
                             </svg>
@@ -740,17 +740,17 @@ function Two() {
                     </div>
                     <div class="DLP_HStack_8">
                         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Feedback_1_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px);">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">􂄺</p>
+                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">💬</p>
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][5]}</p>
                         </div>
                         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Settings_1_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px);">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">􀍟</p>
+                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">⚙️</p>
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][6]}</p>
                         </div>
                     </div>
                     <div class="DLP_HStack_8">
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Earn_Button_1_ID" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; padding: 10px 0px 10px 10px;">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀋦</p>
+                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Earn_Button_1_ID" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: lightgray; padding: 10px 0px 10px 10px;">
+                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🚀</p>
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">Boost</p>
                         </div>
                         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_YouTube_Button_1_ID" onclick="window.open('https://duolingopro.net/youtube', '_blank');" style="justify-content: center; flex: none; width: 40px; padding: 10px; outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-pink));">
@@ -773,9 +773,9 @@ function Two() {
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div class="DLP_HStack_4">
                         <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO LE</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO LE</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <p class="DLP_Text_Style_1" style="display: none; transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); opacity: 0; filter: blur(4px);">You are using an outdated version of Duolingo PRO. <br><br>Please update Duolingo PRO or turn on automatic updates. </p>
                 <p class="DLP_Text_Style_1" style="display: none; transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); opacity: 0; filter: blur(4px);">Duolingo PRO failed to connect. This might be happening because of an issue on our system or your device. <br><br>Try updating Duolingo PRO. If the issue persists afterwards, join our Discord Server to get support. </p>
@@ -785,14 +785,14 @@ function Two() {
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][17]}</p>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_2_ID" style="width: 48px; padding: 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀆃</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">#️⃣</p>
                             </div>
                             <div class="DLP_Input_Style_1_Active">
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][18]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -800,14 +800,14 @@ function Two() {
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][19]}</p>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_2_ID" style="width: 48px; padding: 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀆃</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">#️⃣</p>
                             </div>
                             <div class="DLP_Input_Style_1_Active">
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][18]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -815,14 +815,14 @@ function Two() {
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][21]}</p>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_2_ID" style="width: 48px; padding: 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀆃</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">#️⃣</p>
                             </div>
                             <div class="DLP_Input_Style_1_Active">
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][18]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -830,7 +830,7 @@ function Two() {
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][23]}</p>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Style_1_Active">
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">􀆃</p>
+                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">#️⃣</p>
                                 <div style="display: flex; align-items: center; gap: 8px; width: 100%; justify-content: flex-end;">
                                     <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: rgba(var(--DLP-blue), 0.5);">Unit:</p>
                                     <input type="text" value="1" placeholder="1" id="DLP_Inset_Input_3_ID" class="DLP_Input_Input_Style_1" style="width: 30px;">
@@ -841,20 +841,20 @@ function Two() {
                         </div>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_2_ID" style="width: 48px; padding: 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀆃</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">#️⃣</p>
                             </div>
                             <div class="DLP_Input_Style_1_Active">
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][18]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
                     <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_See_More_1_Button_1_ID" style="outline: rgba(var(--DLP-blue), 0.2) solid 2px; outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px); transform: translate(0px, 0px) scale(1); align-self: stretch; justify-content: space-between;">
                         <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][15]}</p>
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">􀯻</p>
+                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">➡️</p>
                     </div>
                     <div class="DLP_HStack_Auto" style="padding-top: 4px;">
                         <div class="DLP_HStack_4 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Terms_1_Button_1_ID" style="align-items: center;">
@@ -873,70 +873,70 @@ function Two() {
             <div class="DLP_VStack_8">
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div class="DLP_HStack_4 DLP_Hover_1" id="DLP_Universal_Back_1_Button_1_ID">
-                        <p class="DLP_Text_Style_2" style="font-size: 20px;">􀯶</p>
+                        <p class="DLP_Text_Style_2" style="font-size: 20px;">⬅️</p>
                         <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO LE</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO LE</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <div class="DLP_VStack_8" id="DLP_Main_Inputs_1_Divider_1_ID">
                     <div class="DLP_VStack_8" id="DLP_Get_PATH_2_ID">
                         <div class="DLP_HStack_8" style="align-items: center;">
-                            <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                            <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                             <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][17]}</p>
                         </div>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_2_ID" style="width: 48px; padding: 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀆃</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">#️⃣</p>
                             </div>
                             <div class="DLP_Input_Style_1_Active">
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][18]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
                     <div class="DLP_VStack_8" id="DLP_Get_PRACTICE_2_ID">
                         <div class="DLP_HStack_8" style="align-items: center;">
-                            <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                            <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                             <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][19]}</p>
                         </div>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_2_ID" style="width: 48px; padding: 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀆃</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">#️⃣</p>
                             </div>
                             <div class="DLP_Input_Style_1_Active">
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][18]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
                     <div class="DLP_VStack_8" id="DLP_Get_LISTEN_2_ID">
                         <div class="DLP_HStack_8" style="align-items: center;">
-                            <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                            <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                             <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][21]}</p>
                         </div>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_2_ID" style="width: 48px; padding: 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀆃</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">#️⃣</p>
                             </div>
                             <div class="DLP_Input_Style_1_Active">
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][18]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
                     <div class="DLP_VStack_8" id="DLP_Get_LESSON_2_ID">
                         <div class="DLP_HStack_8" style="align-items: center;">
-                            <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">􀎦</p>
+                            <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
                             <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][23]}</p>
                         </div>
                         <div class="DLP_HStack_8">
@@ -951,14 +951,14 @@ function Two() {
                         </div>
                         <div class="DLP_HStack_8">
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_2_ID" style="width: 48px; padding: 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀆃</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">#️⃣</p>
                             </div>
                             <div class="DLP_Input_Style_1_Active">
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1">
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID">
                                 <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][18]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -972,9 +972,9 @@ function Two() {
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div class="DLP_HStack_4">
                         <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <p class="DLP_Text_Style_1 DLP_NoSelect" id="DLP_Terms_1_Text_1_ID">${systemText[systemLanguage][25]}</p>
                 <p class="DLP_Text_Style_1 DLP_NoSelect" id="DLP_Terms_1_Text_2_ID" style="display: none; align-self: stretch;">${systemText[systemLanguage][26]}</p>
@@ -983,17 +983,17 @@ function Two() {
                 </div>
                 <div class="DLP_HStack_8" id="DLP_Terms_1_Button_1_ID">
                     <div id="DLP_Terms_Decline_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10);">
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">􀆄</p>
+                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">❌</p>
                         <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][28]}</p>
                     </div>
                     <div id="DLP_Terms_Accept_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-blue));">
                         <p class="DLP_Text_Style_1" style="color: #FFF;">ACCEPT</p>
-                        <p class="DLP_Text_Style_1" style="color: #FFF;">􀰫</p>
+                        <p class="DLP_Text_Style_1" style="color: #FFF;">✅</p>
                     </div>
                 </div>
                 <div class="DLP_HStack_8" id="DLP_Terms_1_Button_2_ID" style="display: none;">
                     <div class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Terms_Back_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10);">
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">􀯶</p>
+                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">⬅️</p>
                         <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][29]}</p>
                     </div>
                 </div>
@@ -1006,14 +1006,14 @@ function Two() {
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div class="DLP_HStack_4">
                         <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <p class="DLP_Text_Style_1 DLP_NoSelect" style="opacity: 0.5;">${systemText[systemLanguage][30]}</p>
                 <div class="DLP_HStack_8">
                     <div id="DLP_Terms_Declined_Back_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10);">
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">􀯶</p>
+                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">⬅️</p>
                         <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][31]}</p>
                     </div>
                 </div>
@@ -1025,10 +1025,10 @@ function Two() {
             <div class="DLP_VStack_8">
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div id="DLP_Universal_Back_1_Button_1_ID" class="DLP_HStack_4 DLP_Hover_1">
-                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">􀯶</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][32]}</p>
+                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⬅️</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][32]}</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <div style="max-height: 320px; overflow-y: auto;">
                     <div class="DLP_VStack_8">
@@ -1038,7 +1038,7 @@ function Two() {
                                 <p class="DLP_Text_Style_1" style="opacity: 0.5;">In lessons and practices, see the solve and solve all buttons.</p>
                             </div>
                             <div id="DLP_Inset_Toggle_1_ID" class="DLP_Toggle_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀁣</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🔘</p>
                             </div>
                         </div>
                         <div id="DLP_Settings_Show_AutoServer_Button_1_ID" class="DLP_HStack_8" style="justify-content: center; align-items: center;">
@@ -1047,7 +1047,7 @@ function Two() {
                                 <p class="DLP_Text_Style_1" style="opacity: 0.5;">See the AutoServer by Duolingo PRO button in your Duolingo menubar.</p>
                             </div>
                             <div id="DLP_Inset_Toggle_1_ID" class="DLP_Toggle_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀁣</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🔘</p>
                             </div>
                         </div>
                         <div id="DLP_Settings_Legacy_Solve_Speed_1_ID" class="DLP_HStack_8" style="justify-content: center; align-items: center;">
@@ -1065,7 +1065,7 @@ function Two() {
                                 <p class="DLP_Text_Style_1" style="opacity: 0.5;">Allow Duolingo PRO to collect anonymous usage data for us to improve the script.</p>
                             </div>
                             <div id="DLP_Inset_Toggle_1_ID" class="DLP_Toggle_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀁣</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🔘</p>
                             </div>
                         </div>
                         <div id="DLP_Settings_Auto_Update_Toggle_1_ID" class="DLP_HStack_8" style="justify-content: center; align-items: center; opacity: 0.5; pointer-events: none; cursor: not-allowed;">
@@ -1074,7 +1074,7 @@ function Two() {
                                 <p class="DLP_Text_Style_1" style="opacity: 0.5;">${systemText[systemLanguage][35]}</p>
                             </div>
                             <div id="DLP_Inset_Toggle_1_ID" class="DLP_Toggle_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀁣</p>
+                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🔘</p>
                             </div>
                         </div>
                         <div id="DLP_Settings_Modern_Stats_Main_Box_1_ID" class="DLP_VStack_6" style="background: rgba(var(--DLP-blue), 0.10); outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; padding: 16px; border-radius: 8px;">
@@ -1118,7 +1118,7 @@ function Two() {
                 <div class="DLP_HStack_8">
                     <div id="DLP_Settings_Save_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-blue));">
                         <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][37]}</p>
-                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀁣</p>
+                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🔘</p>
                     </div>
                 </div>
             </div>
@@ -1129,14 +1129,14 @@ function Two() {
             <div class="DLP_VStack_8">
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div id="DLP_Universal_Back_1_Button_1_ID" class="DLP_HStack_4 DLP_Hover_1">
-                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">􀯶</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][38]}</p>
+                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⬅️</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][38]}</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <div class="DLP_VStack_4" style="padding: 16px; border-radius: 8px; outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10); box-sizing: border-box;">
                     <div class="DLP_HStack_4">
-                        <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: rgb(var(--DLP-blue));">􀁝</p>
+                        <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: rgb(var(--DLP-blue));">❓</p>
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch; color: rgb(var(--DLP-blue));">Need Support?</p>
                     </div>
                     <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch; color: rgba(var(--DLP-blue), 0.5);">Get help from our <a href='https://www.duolingopro.net/faq' target='_blank' style='font-family: Duolingo PRO Rounded; color: rgb(var(--DLP-blue)); text-decoration: underline;'>FAQ page</a>, enhanced with AI, or join our <a href='https://www.duolingopro.net/discord' target='_blank' style='font-family: Duolingo PRO Rounded; color: rgb(var(--DLP-blue)); text-decoration: underline;'>Discord server</a> and talk with the devs.</p>
@@ -1146,11 +1146,11 @@ function Two() {
                 <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][41]}</p>
                 <div class="DLP_HStack_8">
                     <div id="DLP_Feedback_Type_Bug_Report_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Feedback_Type_Button_Style_1_OFF" style="transition: background 0.4s, outline 0.4s, filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1);">
-                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="transition: 0.4s;">􀌛</p>
+                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="transition: 0.4s;">🐞</p>
                         <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="transition: 0.4s;">${systemText[systemLanguage][42]}</p>
                     </div>
                     <div id="DLP_Feedback_Type_Suggestion_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Feedback_Type_Button_Style_2_ON" style="transition: background 0.4s, outline 0.4s, filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1);">
-                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="transition: 0.4s;">􁷙</p>
+                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="transition: 0.4s;">💡</p>
                         <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="transition: 0.4s;">${systemText[systemLanguage][43]}</p>
                     </div>
                 </div>
@@ -1158,14 +1158,14 @@ function Two() {
                 <div class="DLP_HStack_8">
                     <div id="DLP_Feedback_Attachment_Upload_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10); transition: background 0.4s, outline 0.4s, filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1);">
                         <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue)); transition: 0.4s;">${systemText[systemLanguage][45]}</p>
-                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">􀅼</p>
+                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">📎</p>
                     </div>
                 </div>
                 <input type="file" accept="image/png, image/jpg, image/jpeg, video/mp4, image/gif, video/mov, video/webm" id="DLP_Feedback_Attachment_Input_Hidden_1_ID" style="display: none;"/>
                 <div class="DLP_HStack_8">
                     <div id="DLP_Feedback_Send_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-blue));">
                         <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][47]}</p>
-                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">􀰫</p>
+                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
                     </div>
                 </div>
             </div>
@@ -1176,16 +1176,16 @@ function Two() {
             <div class="DLP_VStack_8">
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div id="DLP_Universal_Back_1_Button_1_ID" class="DLP_HStack_4 DLP_Hover_1">
-                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">􀯶</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][48]}</p>
+                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⬅️</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][48]}</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <div class="DLP_VStack_8" id="DLP_Release_Notes_List_1_ID" style="height: 256px; padding: 0 16px;"></div>
                 <div id="DLP_Release_Notes_Controls" class="DLP_NoSelect" style="display: flex; align-items: center; gap: 8px; margin: 8px;">
-                    <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">􀯶</p>
+                    <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">⬅️</p>
                     <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));"></p>
-                    <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_Inset_Icon_2_ID" style="color: rgb(var(--DLP-blue));">􀯻</p>
+                    <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_Inset_Icon_2_ID" style="color: rgb(var(--DLP-blue));">➡️</p>
                 </div>
             </div>
         </div>
@@ -1195,10 +1195,10 @@ function Two() {
             <div class="DLP_VStack_8">
                 <div class="DLP_VStack_8" style="padding: 8px 0;">
                     <div class="DLP_VStack_0">
-                        <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][52]}</p>
+                        <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][52]}</p>
                         <div class="DLP_HStack_4" style="align-self: auto;">
                             <p class="DLP_Text_Style_2">Duolingo</p>
-                            <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
+                            <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
                         </div>
                     </div>
                     <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch; text-align: center;">${systemText[systemLanguage][53]}</p>
@@ -1206,7 +1206,7 @@ function Two() {
                 <div class="DLP_HStack_8">
                     <div id="DLP_Onboarding_Start_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-blue));">
                         <p class="DLP_Text_Style_1" style="color: #FFF;">${systemText[systemLanguage][54]}</p>
-                        <p class="DLP_Text_Style_1" style="color: #FFF;">􀰫</p>
+                        <p class="DLP_Text_Style_1" style="color: #FFF;">✅</p>
                     </div>
                 </div>
             </div>
@@ -1217,18 +1217,18 @@ function Two() {
             <div class="DLP_VStack_8">
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div id="DLP_Universal_Back_1_Button_1_ID" class="DLP_HStack_4 DLP_Hover_1">
-                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">􀯶</p>
-                        <p class="DLP_Text_Style_2" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Support</p>
+                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⬅️</p>
+                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Support</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
 
                 <div class="DLP_VStack_8" style="height: 500px;">
                     <div id="DLP_Inset_Card_1" style="display: flex; padding: 16px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; align-self: stretch; border-radius: 8px; outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10); overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.32, 1);">
                         <div class="DLP_HStack_6">
-                            <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: rgb(var(--DLP-blue));">􀅵</p>
+                            <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: rgb(var(--DLP-blue));">⏱️</p>
                             <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: rgb(var(--DLP-blue)); flex: 1 0 0;">Response Times</p>
-                            <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: rgb(var(--DLP-blue));">􀯻</p>
+                            <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: rgb(var(--DLP-blue));">➡️</p>
                         </div>
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch; color: rgba(var(--DLP-blue), 0.5); display: none; opacity: 0; filter: blur(4px); height: 0px; transition: 0.4s cubic-bezier(0.16, 1, 0.32, 1);">It may take a few hours for a developer to respond to you. You will be notified in Duolingo PRO when there's a reply.</p>
                     </div>
@@ -1238,7 +1238,7 @@ function Two() {
                     </div>
 
                     <div class="DLP_VStack_8" id="DLP_Inset_Group_3" style="padding: 0px 32px; flex: 1 0 0;">
-                        <p class="DLP_Text_Style_1 DLP_NoSelect" style="background: url(https://www.duolingopro.net/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 24px;">􀘲</p>
+                        <p class="DLP_Text_Style_1 DLP_NoSelect" style="background: url(https://www.duolingopro.net/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 24px;">☰</p>
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch; text-align: center;">Send a message to start talking with a support member.</p>
                     </div>
 
@@ -1253,7 +1253,7 @@ function Two() {
 
                         <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_3_ID" style="width: 100%;">
                             <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: #FFF;">Start a New Chat</p>
-                            <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: #FFF;">􀅼</p>
+                            <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: #FFF;">📎</p>
                         </div>
                     </div>
 
@@ -1276,7 +1276,7 @@ function Two() {
                                 <textarea type="text" placeholder="Type here..." id="DLP_Inset_Input_1_ID" class="DLP_Input_Style_1 DLP_Hide_Scrollbar" style="padding: 16px; box-sizing: content-box; overflow: scroll;"></textarea>
                             </div>
                             <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_2_ID" style="width: 48px;">
-                                <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: #FFF;">􀰫</p>
+                                <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: #FFF;">✅</p>
                             </div>
                         </div>
                     </div>
@@ -1966,7 +1966,7 @@ svg {
     <div class="DLP_HStack_4" style="align-items: center;">
         <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID DLP_NoSelect"></p>
         <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="flex: 1 0 0;"></p>
-        <p class="DLP_Text_Style_1 DLP_Inset_Icon_2_ID DLP_Magnetic_Hover_1 DLP_NoSelect" style="align-self: stretch;">􀆄</p>
+        <p class="DLP_Text_Style_1 DLP_Inset_Icon_2_ID DLP_Magnetic_Hover_1 DLP_NoSelect" style="align-self: stretch;">❌</p>
     </div>
     <p class="DLP_Text_Style_1 DLP_Inset_Text_2_ID" style="opacity: 0.5; align-self: stretch; overflow-wrap: break-word;"></p>
 </div>
@@ -2018,7 +2018,7 @@ svg {
     <div class="DLP_AutoServer_Box DLP_Hide_Scrollbar">
         <div class="DLP_AutoServer_Menu_Bar">
             <div style="display: flex; justify-content: center; align-items: center; gap: 6px; opacity: 0.5;">
-                <p id="DLP_AutoServer_Close_Button_1_ID" class="DLP_AutoServer_Text_Style_1 DLP_Magnetic_Hover_1" style="color: rgb(var(--color-black-text));">􀆄</p>
+                <p id="DLP_AutoServer_Close_Button_1_ID" class="DLP_AutoServer_Text_Style_1 DLP_Magnetic_Hover_1" style="color: rgb(var(--color-black-text));">❌</p>
             </div>
             <div class="DLP_NoSelect" style="display: flex; justify-content: center; align-items: center; gap: 6px; opacity: 0.5;">
                 <p class="DLP_AutoServer_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--color-black-text));">Unavailable</p>
@@ -2032,17 +2032,17 @@ svg {
                     <p class="DLP_AutoServer_Text_Style_2 DLP_NoSelect">AutoServer</p>
                     <div class="DLP_HStack_4" style="align-items: center; padding-top: 6px;">
                         <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="opacity: 0.5;">by Duolingo</p>
-                        <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO</p>
+                        <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO</p>
                     </div>
                 </div>
-                <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="font-size: 14px; background: url(${serverURL}/static/images/flow/secondary/512/light.png) lightgray 50% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
+                <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
             </div>
 
             <div class="DLP_AutoServer_Default_Box" style="background: linear-gradient(rgba(var(--color-snow), 0.8), rgba(var(--color-snow), 0.8)), url(${serverURL}/static/images/flow/primary/512/light.png); background-position: center; background-size: cover; background-repeat: no-repeat;">
                 <div style="display: flex; display: none; flex-direction: column; align-items: flex-start; gap: 6px; align-self: stretch; width: 100%;">
                     <div class="DLP_HStack_Auto">
                         <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect">Settings</p>
-                        <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect">􀍟</p>
+                        <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect">⚙️</p>
                     </div>
                     <div class="DLP_HStack_Auto">
                         <div class="DLP_HStack_4" style="align-items: center;">
@@ -2055,7 +2055,7 @@ svg {
                 <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px; align-self: stretch; width: 100%;">
                     <div class="DLP_HStack_Auto" style="align-items: center; width: 100%;">
                         <p class="DLP_AutoServer_Text_Style_1">Under Construction</p>
-                        <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect">􀇿</p>
+                        <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect">❌</p>
                     </div>
                     <p class="DLP_AutoServer_Text_Style_1" style="opacity: 0.5;">AutoServer is currently under construction and unavailable. We appreciate your patience and will provide updates as progress continues.</p>
                 </div>
@@ -2106,7 +2106,7 @@ svg {
                     <div class="DLP_VStack_6" style="height: 100%; justify-content: flex-start;">
                         <div class="DLP_HStack_Auto">
                             <div class="DLP_HStack_4">
-                                <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="color: #FFF;">􀅵</p>
+                                <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="color: #FFF;">⏱️</p>
                                 <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="color: #FFF;">Info</p>
                             </div>
                             <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="color: #FFF; opacity: 0.5;">This function is in BETA</p>
@@ -2165,7 +2165,7 @@ svg {
                     <div class="DLP_VStack_6" style="height: 100%; justify-content: flex-start;">
                         <div class="DLP_HStack_Auto">
                             <div class="DLP_HStack_4">
-                                <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="color: #FFF;">􀅵</p>
+                                <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="color: #FFF;">⏱️</p>
                                 <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="color: #FFF;">Info</p>
                             </div>
                             <p class="DLP_AutoServer_Text_Style_1 DLP_NoSelect" style="color: #FFF; opacity: 0.5;">This function is in BETA</p>
@@ -2343,7 +2343,7 @@ svg {
     HTML7 = `
 <div id="DLP_The_Bar_Thing_Box" class="DuolingoProCounterBoxOneClass" style="display: inline-flex; justify-content: center; flex-direction: row-reverse; align-items: center; gap: 4px;">
     <div class="vCIrKKxykXwXyUza DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Button_1_ID">
-        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--color-eel)); display: none;">􀯠</p>
+        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--color-eel)); display: none;">♾️</p>
         <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID"></p>
     </div>
     <div class="vCIrKKxykXwXyUza DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Button_2_ID">
@@ -2605,7 +2605,7 @@ function One() {
 
                 if (storageSession.legacy[storageSession.legacy.status].type === 'infinity' && text.textContent !== 'Infinity') {
                     isBusySwitchingPages = true;
-                    setButtonState(button, { button: 'rgb(var(--color-snow), 0.84)', outline: 'rgb(var(--color-swan))', text: 'rgb(var(--color-black-text))', icon: 'rgb(var(--color-black-text))' }, { text: 'Infinity', icon: '􀯠' }, { text: '', icon: '' }, () => {
+                    setButtonState(button, { button: 'rgb(var(--color-snow), 0.84)', outline: 'rgb(var(--color-swan))', text: 'rgb(var(--color-black-text))', icon: 'rgb(var(--color-black-text))' }, { text: 'Infinity', icon: '♾️' }, { text: '', icon: '' }, () => {
                         setTimeout(() => {
                             isBusySwitchingPages = false;
                         }, 400);
@@ -2785,15 +2785,15 @@ function One() {
             playHaptic();
         } else if (icon === "checkmark") {
             iconElement.style.color = "rgb(var(--DLP-green))";
-            iconElement.textContent = "􀁣";
+            iconElement.textContent = "🔘";
             playHaptic("success");
         } else if (icon === "warning") {
             iconElement.style.color = "rgb(var(--DLP-orange))";
-            iconElement.textContent = "􀁟";
+            iconElement.textContent = "⚠️";
             playHaptic("warning");
         } else if (icon === "error") {
             iconElement.style.color = "rgb(var(--DLP-pink))";
-            iconElement.textContent = "􀇿";
+            iconElement.textContent = "❌";
             playHaptic("error");
         } else {
             iconElement.style.color = icon.color;
@@ -3018,7 +3018,7 @@ function One() {
             if (storageSession.legacy.page !== 0) {
                 toNumber = 1;
                 toPage = document.querySelector(`#DLP_Main_Box_Divider_${toNumber}_ID`);
-                setButtonState(button, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][106], icon: '􀱏' }, { text: '', icon: '' });
+                setButtonState(button, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][106], icon: '🏛️' }, { text: '', icon: '' });
                 storageSession.legacy.page = 0;
                 saveStorageSession();
             } else {
@@ -3060,7 +3060,7 @@ function One() {
         if (toNumber === 11) {
             if (newReplyButtonActive) {
                 newReplyButtonActive = false;
-                updateConnetionButtonStyles(document.getElementById("DLP_Main_Feedback_1_Button_1_ID"), { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][5], icon: '􂄺' }, { text: '', icon: '' });
+                updateConnetionButtonStyles(document.getElementById("DLP_Main_Feedback_1_Button_1_ID"), { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][5], icon: '💬' }, { text: '', icon: '' });
             }
         }
 
@@ -3192,7 +3192,7 @@ function One() {
         main.style.transition = "0.8s cubic-bezier(0.16, 1, 0.32, 1)";
         mainBox.style.transition = "0.8s cubic-bezier(0.16, 1, 0.32, 1)";
         if (value) {
-            setButtonState(button, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][104], icon: '􀋮' }, { text: '', icon: '' });
+            setButtonState(button, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][104], icon: '👁️' }, { text: '', icon: '' });
             main.style.bottom = `-${mainBoxHeight - 8}px`;
             legacyButtonVisibility(false);
             mainBox.style.filter = "blur(8px)";
@@ -3621,10 +3621,10 @@ function One() {
 
                 function updatePinViews() {
                     if (storageLocal.pins.legacy.includes(modifiedId)) {
-                        pinIcon.textContent = "􀎧";
+                        pinIcon.textContent = "📌";
                         pinIcon.style.color = "rgb(var(--DLP-blue))";
                     } else {
-                        pinIcon.textContent = "􀎦";
+                        pinIcon.textContent = "⚡";
                         pinIcon.style.color = "rgba(var(--color-eel), 0.50)";
                     }
                 }
@@ -3673,7 +3673,7 @@ function One() {
                 storageSession.legacy.status = type;
                 saveStorageSession();
             } else if (storageSession.legacy.status === type) {
-                setButtonState(buttonElement, { button: 'rgb(var(--DLP-blue))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: systemText[systemLanguage][18], icon: '􀰫' }, { text: '', icon: '' });
+                setButtonState(buttonElement, { button: 'rgb(var(--DLP-blue))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: systemText[systemLanguage][18], icon: '✅' }, { text: '', icon: '' });
                 storageSession.legacy.status = false;
                 saveStorageSession();
             }
@@ -3772,7 +3772,7 @@ function One() {
 
                 animateElement(icon, false);
                 setTimeout(() => {
-                    icon.textContent = '􀆃';
+                    icon.textContent = '#️⃣';
                     animateElement(icon, true);
                 }, 400);
                 if (inputTo === 'show') setTimeout(() => animateElement(input, true), 400);
@@ -3802,7 +3802,7 @@ function One() {
 
                 animateElement(icon, false);
                 setTimeout(() => {
-                    icon.textContent = '􀯠';
+                    icon.textContent = '♾️';
                     animateElement(icon, true);
                 }, 400);
                 if (inputTo === 'hide') animateElement(input, false);
@@ -4023,10 +4023,10 @@ function One() {
 
                 function updatePinViews() {
                     if (storageLocal.pins.home.includes(modifiedId)) {
-                        pinIcon.textContent = "􀎧";
+                        pinIcon.textContent = "📌";
                         pinIcon.style.color = "rgb(var(--DLP-blue))";
                     } else {
-                        pinIcon.textContent = "􀎦";
+                        pinIcon.textContent = "⚡";
                         pinIcon.style.color = "rgba(var(--color-eel), 0.50)";
                     }
                 }
@@ -4133,9 +4133,11 @@ function One() {
     let DLP_Server_Connection_Button_2 = document.getElementById("DLP_Secondary_1_Server_Connection_Button_1_ID");
     DLP_Server_Connection_Button.addEventListener('click', () => {
         if (DLP_Server_Connection_Button.getAttribute("data-dlp-connection-status") === "outdated") {
-            window.open("https://duolingopro.net/update/userscript", "_blank");
+            // window.open("https://duolingopro.net/update/userscript", "_blank");
+            console.log("Update check disabled (Offline)");
         } else if (DLP_Server_Connection_Button.getAttribute("data-dlp-connection-status") === "error") {
-            window.open("https://status.duolingopro.net", "_blank");
+            // window.open("https://status.duolingopro.net", "_blank");
+            console.log("Status page link disabled (Offline)");
         }
     });
     function updateConnetionButtonStyles(button, color, content, animation) {
@@ -4244,7 +4246,7 @@ function One() {
 
     function areArraysEqual(arrayA = [], arrayB = []) {
         if (arrayA.length !== arrayB.length) return false;
-        for (let i = 0; i < arrayA.length; i++) {
+        for (let i = 0; i < arrayB.length; i++) {
             if (arrayA[i] !== arrayB[i]) return false;
         }
         return true;
@@ -4257,241 +4259,38 @@ function One() {
 
         const chatKeyValue = storageLocal?.chatKey?.[0] ?? false;
 
-        //fetch(apiURL + '/server', {
-        fetch('https://api.duolingopro.net/server', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                version: versionFormal,
-                key: storageLocal.random16,
-                ...(chatKeyValue && { chat_key: chatKeyValue })
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.global || data.versions) {
-                    console.log(data.chats);
+        // Server connection disabled
+        console.log("Offline mode: Server connection skipped.");
 
-                    if (!userBioData && !fetchingUserBioData) {
-                        fetchUserBioData();
-                    }
+        // Mock successful onboarding to ensure UI allows interaction
+        if (!storageLocal.onboarding) {
+            storageLocal.onboarding = true;
+            saveStorageLocal();
+        }
 
-                    if (chatKeyValue) {
-                        if (!data.chats) {
-                            if (kqjzvmbt) {
-                                storageLocal.chatKey.shift();
-                                saveStorageLocal();
-                            }
-                            kqjzvmbt = true;
-                        } else {
-                            buildChat(data);
-                        }
-                    }
+        // Update UI to show "Offline" state to avoid "Connecting..." forever
+        const updateOfflineBtn = (btnId) => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+                if (btn.children[0]) btn.children[0].innerText = '🔗';
+                if (btn.children[1]) btn.children[1].innerText = 'Offline';
+            }
+        };
+        updateOfflineBtn('DLP_Main_1_Server_Connection_Button_1_ID');
+        updateOfflineBtn('DLP_Secondary_1_Server_Connection_Button_1_ID');
 
-                    function buildChat(data) {
-                        const chatParent = document.querySelector('#DLP_Main_Box_Divider_11_ID').lastElementChild;
-                        const chatBox = chatParent?.querySelector('.DLP_Chat_Box_1_ID_1');
-                        if (!chatBox) return;
+        // Allow main inputs interaction
+        const mainInputs = document.getElementById('DLP_Main_Inputs_1_Divider_1_ID');
+        if (mainInputs) {
+            mainInputs.style.opacity = '1';
+            mainInputs.style.pointerEvents = 'auto';
+        }
 
-                        if (typeof data === 'undefined' || typeof data.chats === 'undefined' || !Array.isArray(data.chats.messages)) return;
-                        if (chatParent?.querySelector('#DLP_Inset_Group_3')?.style.display !== 'none') chatParent.querySelector('#DLP_Inset_Group_3').style.display = 'none';
-                        if (chatBox?.style.display === 'none') chatBox.style.display = 'flex';
+        // If legacy mode requires specific handling, ensure it's accessible.
+        // (Legacy mode is local, so it should be fine as long as UI isn't blocked)
 
-                        if (data.chats.solved) {
-                            chatParent.querySelector('#DLP_Inset_Group_1').style.display = 'none';
-                            chatParent.querySelector('#DLP_Inset_Group_2').style.display = '';
-                        }
-
-                        const incomingMessages = data.chats.messages.filter(msg => !msg?.deleted && msg?.status !== 'deleted');
-                        const nextFingerprints = incomingMessages.map(computeMessageFingerprint);
-                        const hasChanges = nextFingerprints.length !== chatMemoryFingerprints.length || nextFingerprints.some((fingerprint, index) => fingerprint !== chatMemoryFingerprints[index]);
-
-                        if (hasChanges) {
-                            const previousLength = chatMemory.length;
-                            const wasAtBottom = Math.abs(chatBox.scrollHeight - (chatBox.scrollTop + chatBox.clientHeight)) < 5;
-                            const scrollOffsetFromBottom = chatBox.scrollHeight - chatBox.scrollTop;
-
-                            chatBox.innerHTML = '';
-                            const combinedMessages = [];
-                            let sequenceCounter = 0;
-                            const resolveTimestamp = (msg) => {
-                                const rawTimestamp = msg?.send_time;
-                                if (rawTimestamp === undefined || rawTimestamp === null) {
-                                    return Number.MAX_SAFE_INTEGER;
-                                }
-                                const numericTimestamp = Number(rawTimestamp);
-                                if (!Number.isFinite(numericTimestamp)) {
-                                    return Number.MAX_SAFE_INTEGER;
-                                }
-                                return numericTimestamp < 1e12 ? numericTimestamp * 1000 : numericTimestamp;
-                            };
-
-                            incomingMessages.forEach(message => {
-                                combinedMessages.push({
-                                    message,
-                                    tempId: false,
-                                    sequence: sequenceCounter++
-                                });
-                            });
-                            pendingTempMessages.forEach((tempMessage, tempId) => {
-                                combinedMessages.push({
-                                    message: tempMessage,
-                                    tempId,
-                                    sequence: sequenceCounter++
-                                });
-                            });
-
-                            combinedMessages.sort((a, b) => {
-                                const timeA = resolveTimestamp(a.message);
-                                const timeB = resolveTimestamp(b.message);
-                                if (timeA === timeB) {
-                                    return a.sequence - b.sequence;
-                                }
-                                return timeA - timeB;
-                            });
-
-                            chatMessageLookup.clear();
-                            incomingMessages.forEach(msg => {
-                                const key = resolveMessageKey(msg);
-                                if (key) {
-                                    chatMessageLookup.set(key, msg);
-                                }
-                                if (msg?.send_time !== undefined && msg?.send_time !== null) {
-                                    const sendKey = String(msg.send_time);
-                                    if (sendKey && sendKey !== key) {
-                                        chatMessageLookup.set(sendKey, msg);
-                                    }
-                                }
-                            });
-
-                            combinedMessages.forEach(({ message, tempId }) => {
-                                createMessage(message, false, tempId || false);
-                            });
-
-                            const hasNewMessages = incomingMessages.length > previousLength;
-                            if (hasNewMessages || wasAtBottom) {
-                                chatBox.scrollTop = chatBox.scrollHeight;
-                            } else {
-                                const newScrollTop = chatBox.scrollHeight - scrollOffsetFromBottom;
-                                chatBox.scrollTop = newScrollTop < 0 ? 0 : newScrollTop;
-                            }
-                        }
-
-                        chatMemory = incomingMessages.map(message => ({ ...message }));
-                        chatMemoryFingerprints = nextFingerprints;
-
-                        const knownMessageIds = (storageLocal.chats ?? []).map(id => (id === null || id === undefined) ? id : String(id));
-
-                        if (currentPage === 11) {
-                            const newMessageIds = chatMemory.map(resolveMessageKey);
-                            if (!areArraysEqual(knownMessageIds, newMessageIds)) {
-                                storageLocal.chats = newMessageIds;
-                                saveStorageLocal();
-                            }
-                        } else {
-                            incomingMessages.forEach(msg => {
-                                const messageKey = resolveMessageKey(msg);
-                                const sendTimeKey = (msg?.send_time !== undefined && msg?.send_time !== null) ? String(msg.send_time) : null;
-                                const alreadyKnown = (messageKey && knownMessageIds.includes(messageKey)) || (sendTimeKey && knownMessageIds.includes(sendTimeKey));
-                                if (!alreadyKnown && !newReplyButtonActive) {
-                                    newReplyButtonActive = true;
-                                    updateConnetionButtonStyles(document.getElementById("DLP_Main_Feedback_1_Button_1_ID"), { button: 'rgb(var(--DLP-blue))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: 'New Reply', icon: '􀝗' }, { text: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite', icon: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite' });
-                                    showNotification({ icon: "􂄺", color: "rgb(var(--DLP-blue))" }, "Support Team Response", "You have a new message from our support team.", 30);
-                                }
-                            });
-                        }
-                    }
-
-
-                    const globalData = data.global;
-                    const versionData = data.versions[versionFull];
-                    const warnings = versionData.warnings || [];
-
-                    const termsText = Object.entries(globalData.terms)[0][1];
-                    newTermID = Object.entries(globalData.terms)[0][0];
-
-                    //console.log('Global Warning:', globalData.warning);
-                    //console.log('Notifications:', globalData.notifications);
-
-                    document.querySelector(`#DLP_Terms_Main_Text_1_ID`).innerHTML = termsText;
-
-                    if (versionData.status === 'latest') {
-                        // Auto-accept terms
-                        if (storageLocal.terms !== newTermID) {
-                            storageLocal.terms = newTermID;
-                            storageLocal.onboarding = true;
-                            saveStorageLocal();
-                        }
-
-                        if (true) {
-                            if (serverConnectedBefore !== 'yes') {
-                                updateReleaseNotes(warnings);
-                                mainInputsDiv1.style.opacity = '1';
-                                mainInputsDiv1.style.pointerEvents = 'auto';
-                                updateConnetionButtonStyles(DLP_Server_Connection_Button, { button: 'rgb(var(--DLP-green))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: systemText[systemLanguage][108], icon: '􀤆' }, { text: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite', icon: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite' });
-                                updateConnetionButtonStyles(DLP_Server_Connection_Button_2, { button: 'rgb(var(--DLP-green))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: systemText[systemLanguage][108], icon: '􀤆' }, { text: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite', icon: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite' });
-                                DLP_Server_Connection_Button.setAttribute("data-dlp-connection-status", "connected");
-                                DLP_Server_Connection_Button_2.setAttribute("data-dlp-connection-status", "connected");
-
-                                if (storageSession.legacy.page !== 0 && currentPage === 1) {
-                                    goToPage(3);
-                                }
-
-                                if (serverConnectedBefore === 'error' || serverConnectedBeforeNotification) {
-                                    serverConnectedBeforeNotification.close();
-                                    serverConnectedBeforeNotification = false;
-                                }
-                                serverConnectedBefore = 'yes';
-                            }
-                        }
-                    } else if (serverConnectedBefore !== 'outdated') {
-                        updateConnetionButtonStyles(DLP_Server_Connection_Button, { button: 'rgb(var(--DLP-orange))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: 'Outdated', icon: '􀁟' }, { text: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite', icon: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite' });
-                        updateConnetionButtonStyles(DLP_Server_Connection_Button_2, { button: 'rgb(var(--DLP-orange))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: 'Outdated', icon: '􀁟' }, { text: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite', icon: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite' });
-                        DLP_Server_Connection_Button.setAttribute("data-dlp-connection-status", "outdated");
-                        DLP_Server_Connection_Button_2.setAttribute("data-dlp-connection-status", "outdated");
-                        if (serverConnectedBefore === 'no') {
-                            mainInputsDiv1.style.opacity = '0.5';
-                            mainInputsDiv1.style.pointerEvents = 'none';
-                            showNotification("warning", systemText[systemLanguage][233], systemText[systemLanguage][234], 0);
-                        } else if (serverConnectedBefore === 'error' || serverConnectedBeforeNotification) {
-                            serverConnectedBeforeNotification.close();
-                            serverConnectedBeforeNotification = false;
-                        }
-                        serverConnectedBefore = 'outdated';
-                    }
-
-                    //if (storageLocal.languagePackVersion !== versionData.languagePackVersion) {
-                    //    fetch(serverURL + "/static/3.0/resources/language_pack.json")
-                    //        .then(response => response.json())
-                    //        .then(data => {
-                    //            if (data[versionFull]) {
-                    //                storageLocal.languagePack = data[versionFull];
-                    //                console.log(data[versionFull]);
-                    //                storageLocal.languagePackVersion = versionData.languagePackVersion;
-                    //                saveStorageLocal();
-                    //            }
-                    //        })
-                    //        .catch(error => console.error('Error fetching systemText:', error));
-                    //}
-                } else {
-                    console.error(`Version ${versionFull} not found in the data`);
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                if (serverConnectedBefore !== 'error') {
-                    mainInputsDiv1.style.opacity = '0.5';
-                    mainInputsDiv1.style.pointerEvents = 'none';
-                    updateConnetionButtonStyles(DLP_Server_Connection_Button, { button: 'rgb(var(--DLP-pink))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: systemText[systemLanguage][109], icon: '􀇿' }, { text: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite', icon: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite' });
-                    updateConnetionButtonStyles(DLP_Server_Connection_Button_2, { button: 'rgb(var(--DLP-pink))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: systemText[systemLanguage][109], icon: '􀇿' }, { text: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite', icon: 'DLP_Pulse_Opacity_Animation_1 6s ease-in-out infinite' });
-                    DLP_Server_Connection_Button.setAttribute("data-dlp-connection-status", "error");
-                    DLP_Server_Connection_Button_2.setAttribute("data-dlp-connection-status", "error");
-                    serverConnectedBeforeNotification = showNotification("error", systemText[systemLanguage][231], systemText[systemLanguage][232], 0);
-                    serverConnectedBefore = 'error';
-                }
-            });
     }
     connectToServer();
     setTimeout(() => {
@@ -4504,19 +4303,7 @@ function One() {
 
     let fetchingUserBioData = false;
     async function fetchUserBioData() {
-        fetchingUserBioData = true;
-        console.log('FETHCING FOR YOU YOUR HONOR');
-        const userResponse = await fetch('https://www.duolingo.com/2017-06-30/users/' + JSON.parse(atob(document.cookie.split(';').find(cookie => cookie.includes('jwt_token')).split('=')[1].split('.')[1])).sub + '?fields=name,username,picture');
-        if (!userResponse.ok) {
-            fetchingUserBioData = false;
-            return;
-        }
-        const userData = await userResponse.json();
-        console.log(userData);
-        userBioData = {
-            username: (userData.name && userData.name.trim().length > 0) ? userData.name : userData.username,
-            profile_picture: "https:" + userData.picture + "/xlarge"
-        };
+        // Disabled remote fetch for bio data
         fetchingUserBioData = false;
     }
 
@@ -5012,7 +4799,7 @@ function One() {
 
                 let closeBtn = `
                     <div style="display: flex; padding: 2px; justify-content: center; align-items: center; gap: 6px; opacity: 0.5; position: absolute; bottom: 24px; pointer-events: none;">
-                        <p class="DLP_Text_Style_1 DLP_NoSelect">􀆄</p>
+                        <p class="DLP_Text_Style_1 DLP_NoSelect">❌</p>
                         <p class="DLP_Text_Style_1 DLP_NoSelect">Close</p>
                     </div>
                 `;
@@ -5441,14 +5228,14 @@ function One() {
         let FeedbackText = DLP_Feedback_Text_Input_1_ID.value;
         sendFeedbackServer(feedbackType, FeedbackText);
 
-        setButtonState(DLP_Feedback_Send_Button_1_ID, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][111], icon: '􀓞' }, { text: '', icon: 'DLP_Rotate_360_Animation_1 4s ease-in-out infinite' }, () => {
+        setButtonState(DLP_Feedback_Send_Button_1_ID, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][111], icon: '🔗' }, { text: '', icon: 'DLP_Rotate_360_Animation_1 4s ease-in-out infinite' }, () => {
             function f() {
                 if (sendFeedbackStatus === 'sent') {
-                    setButtonState(DLP_Feedback_Send_Button_1_ID, { button: 'linear-gradient(0deg, rgba(var(--DLP-green), 0.10) 0%, rgba(var(--DLP-green), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-green), 0.20)', text: 'rgb(var(--DLP-green))', icon: 'rgb(var(--DLP-green))' }, { text: systemText[systemLanguage][112], icon: '􀁣' }, { text: '', icon: ' ' }, () => {
+                    setButtonState(DLP_Feedback_Send_Button_1_ID, { button: 'linear-gradient(0deg, rgba(var(--DLP-green), 0.10) 0%, rgba(var(--DLP-green), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-green), 0.20)', text: 'rgb(var(--DLP-green))', icon: 'rgb(var(--DLP-green))' }, { text: systemText[systemLanguage][112], icon: '🔘' }, { text: '', icon: ' ' }, () => {
                         confetti();
                     });
                 } else if (sendFeedbackStatus === 'error') {
-                    setButtonState(DLP_Feedback_Send_Button_1_ID, { button: 'linear-gradient(0deg, rgba(var(--DLP-pink), 0.10) 0%, rgba(var(--DLP-pink), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-pink), 0.20)', text: 'rgb(var(--DLP-pink))', icon: 'rgb(var(--DLP-pink))' }, { text: systemText[systemLanguage][115], icon: '􀇿' }, { text: '', icon: ' ' }, () => {
+                    setButtonState(DLP_Feedback_Send_Button_1_ID, { button: 'linear-gradient(0deg, rgba(var(--DLP-pink), 0.10) 0%, rgba(var(--DLP-pink), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-pink), 0.20)', text: 'rgb(var(--DLP-pink))', icon: 'rgb(var(--DLP-pink))' }, { text: systemText[systemLanguage][115], icon: '❌' }, { text: '', icon: ' ' }, () => {
                     });
                 } else if (sendFeedbackStatus === 'sending') {
                     setTimeout(() => { f(); }, 800);
@@ -5531,14 +5318,9 @@ function One() {
                 payload.file = base64File;
             }
 
-            const response = await fetch(apiURL + "/feedback", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${document.cookie.split(';').find(cookie => cookie.includes('jwt_token')).split('=')[1]}`
-                },
-                body: JSON.stringify(payload)
-            });
+            // Feedback disabled
+            const response = { ok: true, json: async () => ({ status: true, notification: { icon: "􀄔", head: "Feedback Disabled", body: "Feedback is disabled in this offline version.", duration: 5 } }) };
+
 
             const responseData = await response.json();
 
@@ -5562,7 +5344,7 @@ function One() {
         setButtonState(
             button,
             { button: 'rgba(var(--DLP-blue), 0.10)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' },
-            { text: systemText[systemLanguage][113], icon: '􀓞' },
+            { text: systemText[systemLanguage][113], icon: '🔗' },
             { text: '', icon: 'DLP_Rotate_360_Animation_1 4s ease-in-out infinite' }
         );
         let nextAnimationEndsAt = loadingStart + ANIM_MS;
@@ -5591,7 +5373,7 @@ function One() {
                         setButtonState(
                             button,
                             { button: 'rgb(var(--DLP-blue))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' },
-                            { text: 'CONFIRM', icon: '􀰫' },
+                            { text: 'CONFIRM', icon: '✅' },
                             { text: '', icon: '' }
                         );
                         nextAnimationEndsAt = Date.now() + ANIM_MS;
@@ -5605,14 +5387,16 @@ function One() {
                 button.dataset.overrideXp = 'false';
             }
 
-            const response = await fetch(apiURL + '/request', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${document.cookie.split(';').find(cookie => cookie.includes('jwt_token')).split('=')[1]}`
-                },
-                body: JSON.stringify({ type: id, amount, version: versionFull })
-            });
+            // Request API disabled
+            console.log(`Requesting ${id} with amount ${amount} (OFFLINE MODE)`);
+            // Mocking a successful stream response or just handling logic locally if possible?
+            // Since this connects to a backend to solve things, disabling it breaks "Cloud" solving.
+            // But User asked to "remove all connections with the server".
+            // If this is for "Legacy Mode" (Client Side), that logic should be elsewhere.
+            // If this is "Magnet UI" (Server Side), it won't work.
+            // I will throw an error or mock it.
+            throw new Error("Server connection removed. Feature unavailable.");
+
 
             if (!response.ok) throw new Error('Request failed with status ' + response.status);
 
@@ -5709,7 +5493,7 @@ function One() {
                 setButtonState(
                     button,
                     { button: 'rgba(var(--DLP-green), 0.10)', outline: 'rgba(var(--DLP-green), 0.20)', text: 'rgb(var(--DLP-green))', icon: 'rgb(var(--DLP-green))' },
-                    { text: systemText[systemLanguage][114], icon: '􀁣' },
+                    { text: systemText[systemLanguage][114], icon: '🔘' },
                     { text: '', icon: '' }
                 );
                 nextAnimationEndsAt = Date.now() + ANIM_MS;
@@ -5722,7 +5506,7 @@ function One() {
                     setButtonState(
                         button,
                         { button: 'rgb(var(--DLP-blue))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' },
-                        { text: buttonContentText, icon: '􀰫' },
+                        { text: buttonContentText, icon: '✅' },
                         { text: '', icon: '' }
                     );
                     nextAnimationEndsAt = Date.now() + ANIM_MS;
@@ -5734,7 +5518,7 @@ function One() {
                 setButtonState(
                     button,
                     { button: 'rgb(var(--DLP-pink))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' },
-                    { text: systemText[systemLanguage][115], icon: '􀇿' },
+                    { text: systemText[systemLanguage][115], icon: '❌' },
                     { text: '', icon: '' }
                 );
                 nextAnimationEndsAt = Date.now() + ANIM_MS;
@@ -5743,7 +5527,7 @@ function One() {
                     setButtonState(
                         button,
                         { button: 'rgb(var(--DLP-blue))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' },
-                        { text: systemText[systemLanguage][9], icon: '􀰫' },
+                        { text: systemText[systemLanguage][9], icon: '✅' },
                         { text: '', icon: '' }
                     );
                     nextAnimationEndsAt = Date.now() + ANIM_MS;
@@ -5755,7 +5539,7 @@ function One() {
                 setButtonState(
                     button,
                     { button: 'rgb(var(--DLP-blue))', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' },
-                    { text: systemText[systemLanguage][9], icon: '􀰫' },
+                    { text: systemText[systemLanguage][9], icon: '✅' },
                     { text: '', icon: '' }
                 );
                 nextAnimationEndsAt = Date.now() + ANIM_MS;
@@ -5902,7 +5686,7 @@ function One() {
             }
 
             setTimeout(() => {
-                iconToChange.textContent = state ? '􀁣' : '􀁡';
+                iconToChange.textContent = state ? '🔘' : '⚪';
 
                 void button.offsetWidth;
                 iconToChange.style.filter = 'blur(0px)';
@@ -6133,6 +5917,9 @@ function One() {
 
 
     async function generateEarnKey() {
+        // Offline mock for earn key
+        return "OFFLINE_EARN_KEY";
+
         const endpoint = `https://api.duolingopro.net/earn/connect/generate`;
 
         try {
@@ -6178,10 +5965,11 @@ function One() {
             generateEarnKey()
                 .then(earnKey => {
                     console.log('Successfully retrieved earn key:', earnKey);
-                    button.setAttribute("onclick", `window.open('${serverURL}/earn/connect/link/${earnKey}', '_blank');`);
+                    // button.setAttribute("onclick", `window.open('${serverURL}/earn/connect/link/${earnKey}', '_blank');`);
                     if (!earnButtonAssignedLink) {
                         earnButtonAssignedLink = true;
-                        window.open(serverURL + "/earn/connect/link/" + earnKey, "_blank");
+                        // window.open(`${serverURL}/earn/connect/link/${earnKey}`, '_blank');
+                        console.log("Earn link disabled (Offline)");
                     }
                 })
                 .catch(error => {
@@ -6347,6 +6135,10 @@ function One() {
                 if (!storageLocal.chatKey || storageLocal.chatKey.length === 0) {
                     if (container?.querySelector('#DLP_Inset_Group_3')?.style.display !== 'none') container.querySelector('#DLP_Inset_Group_3').style.display = 'none';
                     if (chatBox?.style.display === 'none') chatBox.style.display = 'flex';
+
+                    // Chat create disabled
+                    console.log("Chat create disabled");
+                    return;
 
                     try {
                         let response = await fetch(apiURL + "/chats/create", {
@@ -6865,13 +6657,15 @@ function One() {
 
                 console.log(sol);
 
-                const response = await fetch("https://api.duolingopro.net/analytics/legacy", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
+                // Analytics disabled
+                console.log("Legacy analytics disabled");
+                // const response = await fetch("https://api.duolingopro.net/analytics/legacy", {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify(payload)
+                // });
             } else {
                 if (flag === 2) showNotification("error", "Legacy Solved Incorrectly", "Legacy has detected that it solved a question incorrectly. Turn on share anonymous usage data in settings to help us fix this bug.", 10);
                 else if (flag === 3) showNotification("error", "Legacy is Stuck", "Legacy has detected that it is stuck on a question. Turn on share anonymous usage data in settings to help us fix this bug.", 10);
