@@ -1,14 +1,7 @@
-// ==UserScript==
-// @name         Duolingo PRO
-// @namespace    https://duolingopro.net
-// @version      3.1BETA.03
-// @description  The fastest Duolingo XP gainer, working as of November 2025.
-// @author       anonymousHackerIV
-// @match        https://*.duolingo.com/*
-// @match        https://*.duolingo.cn/*
-// @icon         https://www.duolingopro.net/static/favicons/duo/128/light/primary.png
-// @grant        GM_log
-// ==/UserScript==
+// Originally taken from [Duolingo PRO](https://github.com/anonymoushackerIV/Duolingo-PRO)
+// Simplified and modified for automation 
+
+if (window.top !== window.self) return;
 
 
 let storageLocal;
@@ -26,7 +19,7 @@ let alpha = false;
 
 let hidden = false;
 let lastPage;
-let currentPage = 1;
+let currentPage = 3;
 let windowBlurState = true;
 
 let solvingIntervalId;
@@ -426,31 +419,16 @@ function Two() {
 <div class="DLP_Notification_Main"></div>
 <div class="DLP_Main">
     <div class="DLP_HStack_8" style="align-self: flex-end;">
-        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Switch_Legacy_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px);">
-            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">🏛️</p>
-            <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue)); white-space: nowrap;">${systemText[systemLanguage][1]}</p>
-        </div>
+
         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Hide_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10); flex: none; backdrop-filter: blur(16px);">
             <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">👁️</p>
             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][2]}</p>
         </div>
     </div>
     <div class="DLP_Main_Box">
-        <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_1_ID" style="display: block;">
+        <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_1_ID" style="display: none;">
             <div class="DLP_VStack_8">
                 <div class="DLP_VStack_8">
-                    <div class="DLP_HStack_8">
-                        <div id="DLP_Main_1_Server_Connection_Button_1_ID" class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgb(var(--color-eel), 0.20); outline-offset: -2px; background: rgb(var(--color-eel), 0.10); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.32, 1), background 0.8s cubic-bezier(0.16, 1, 0.32, 1), outline 0.8s cubic-bezier(0.16, 1, 0.32, 1), filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1); padding: 10px 0px 10px 10px;">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--color-eel));">🔗</p>
-                            <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--color-eel));">${systemText[systemLanguage][3]}</p>
-                        </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Donate_Button_1_ID" onclick="window.open('https://duolingopro.net/donate', '_blank');" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: lightgray; padding: 10px 0px 10px 10px;">
-                            <svg width="17" height="19" viewBox="0 0 17 19" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.5 5.90755C16.4968 3.60922 14.6997 1.72555 12.5913 1.04588C9.97298 0.201877 6.51973 0.324211 4.01956 1.49921C0.989301 2.92355 0.0373889 6.04355 0.00191597 9.15522C-0.0271986 11.7136 0.229143 18.4517 4.04482 18.4997C6.87998 18.5356 7.30214 14.8967 8.61397 13.1442C9.5473 11.8974 10.749 11.5452 12.2284 11.1806C14.7709 10.5537 16.5037 8.55506 16.5 5.90755Z"/>
-                            </svg>
-                            <p class="DLP_Text_Style_1" style="color: #FFF;">${systemText[systemLanguage][4]}</p>
-                        </div>
-                    </div>
                     <div class="DLP_HStack_8">
                         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Feedback_1_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px);">
                             <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">💬</p>
@@ -461,35 +439,8 @@ function Two() {
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][6]}</p>
                         </div>
                     </div>
-                    <div class="DLP_HStack_8">
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Earn_Button_1_ID" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: lightgray; padding: 10px 0px 10px 10px;">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🚀</p>
-                            <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">Boost</p>
-                        </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_YouTube_Button_1_ID" onclick="window.open('https://duolingopro.net/youtube', '_blank');" style="justify-content: center; flex: none; width: 40px; padding: 10px; outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-pink));">
-                            <svg width="22" height="16" viewBox="0 0 22 16" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.2043 1.0885C20.1084 1.33051 20.8189 2.041 21.0609 2.9451C21.4982 4.58216 21.5 7.99976 21.5 7.99976C21.5 7.99976 21.5 11.4174 21.0609 13.0544C20.8189 13.9585 20.1084 14.669 19.2043 14.911C17.5673 15.3501 11 15.3501 11 15.3501C11 15.3501 4.43274 15.3501 2.79568 14.911C1.89159 14.669 1.1811 13.9585 0.939084 13.0544C0.5 11.4174 0.5 7.99976 0.5 7.99976C0.5 7.99976 0.5 4.58216 0.939084 2.9451C1.1811 2.041 1.89159 1.33051 2.79568 1.0885C4.43274 0.649414 11 0.649414 11 0.649414C11 0.649414 17.5673 0.649414 19.2043 1.0885ZM14.3541 8.00005L8.89834 11.1497V4.85038L14.3541 8.00005Z"/>
-                            </svg>
-                        </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Discord_Button_1_ID" onclick="window.open('https://duolingopro.net/discord', '_blank');" style="justify-content: center; flex: none; width: 40px; padding: 10px; outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-indigo));">
-                            <svg width="22" height="16" viewBox="0 0 22 16" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.289 1.34C16.9296 0.714 15.4761 0.259052 13.9565 0C13.7699 0.332095 13.5519 0.77877 13.4016 1.1341C11.7862 0.894993 10.1857 0.894993 8.60001 1.1341C8.44972 0.77877 8.22674 0.332095 8.03844 0C6.51721 0.259052 5.06204 0.715671 3.70267 1.34331C0.960812 5.42136 0.21754 9.39811 0.589177 13.3184C2.40772 14.655 4.17011 15.467 5.90275 15.9984C6.33055 15.4189 6.71209 14.8028 7.04078 14.1536C6.41478 13.9195 5.81521 13.6306 5.24869 13.2952C5.39898 13.1856 5.546 13.071 5.68803 12.9531C9.14342 14.5438 12.8978 14.5438 16.3119 12.9531C16.4556 13.071 16.6026 13.1856 16.7512 13.2952C16.183 13.6322 15.5818 13.9211 14.9558 14.1553C15.2845 14.8028 15.6644 15.4205 16.0939 16C17.8282 15.4687 19.5922 14.6567 21.4107 13.3184C21.8468 8.77378 20.6658 4.83355 18.289 1.34ZM7.51153 10.9075C6.47426 10.9075 5.62361 9.95435 5.62361 8.7937C5.62361 7.63305 6.45609 6.67831 7.51153 6.67831C8.56699 6.67831 9.41761 7.63138 9.39945 8.7937C9.40109 9.95435 8.56699 10.9075 7.51153 10.9075ZM14.4884 10.9075C13.4511 10.9075 12.6005 9.95435 12.6005 8.7937C12.6005 7.63305 13.4329 6.67831 14.4884 6.67831C15.5438 6.67831 16.3945 7.63138 16.3763 8.7937C16.3763 9.95435 15.5438 10.9075 14.4884 10.9075Z"/>
-                            </svg>
-                        </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_GitHub_Button_1_ID" onclick="window.open('https://duolingopro.net/github', '_blank');" style="justify-content: center; flex: none; width: 40px; padding: 10px; outline: 2px solid rgba(255, 255, 255, 0.20); outline-offset: -2px; background: #333333;">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.0087 0.5C5.19766 0.5 0.5 5.3125 0.5 11.2662C0.5 16.0253 3.50995 20.0538 7.68555 21.4797C8.2076 21.5868 8.39883 21.248 8.39883 20.963C8.39883 20.7134 8.38162 19.8578 8.38162 18.9664C5.45836 19.6082 4.84962 17.683 4.84962 17.683C4.37983 16.4353 3.68375 16.1146 3.68375 16.1146C2.72697 15.4551 3.75345 15.4551 3.75345 15.4551C4.81477 15.5264 5.37167 16.5602 5.37167 16.5602C6.31103 18.1999 7.82472 17.7366 8.43368 17.4514C8.52058 16.7562 8.79914 16.2749 9.09491 16.0076C6.7634 15.758 4.31035 14.8312 4.31035 10.6957C4.31035 9.51928 4.72765 8.55678 5.38888 7.80822C5.28456 7.54091 4.9191 6.43556 5.49342 4.95616C5.49342 4.95616 6.38073 4.67091 8.38141 6.06128C9.23797 5.82561 10.1213 5.70573 11.0087 5.70472C11.896 5.70472 12.8005 5.82963 13.6358 6.06128C15.6367 4.67091 16.524 4.95616 16.524 4.95616C17.0983 6.43556 16.7326 7.54091 16.6283 7.80822C17.3069 8.55678 17.707 9.51928 17.707 10.6957C17.707 14.8312 15.254 15.7401 12.905 16.0076C13.2879 16.3463 13.6183 16.9878 13.6183 18.0039C13.6183 19.4477 13.6011 20.6064 13.6011 20.9627C13.6011 21.248 13.7926 21.5868 14.3144 21.4799C18.49 20.0536 21.5 16.0253 21.5 11.2662C21.5172 5.3125 16.8023 0.5 11.0087 0.5Z"/>
-                            </svg>
-                        </div>
-                    </div>
                 </div>
-                <div class="DLP_HStack_Auto_Top DLP_NoSelect">
-                    <div class="DLP_HStack_4">
-                        <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
-                    </div>
-                    <p class="DLP_Text_Style_1" style="margin-top: 2px; font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
-                </div>
+
                 <p id="DLP_Main_Warning_1_ID" class="DLP_Text_Style_1" style="transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); text-align: center; opacity: 0.5; display: none;"></p>
                 <div class="DLP_VStack_8" id="DLP_Main_Inputs_1_Divider_1_ID" style="opacity: 0.5; pointer-events: none; transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);">
                     <div class="DLP_VStack_8" id="DLP_Get_XP_1_ID" style="flex: 1 0 0;">
@@ -532,15 +483,7 @@ function Two() {
                             </div>
                         </div>
                     </div>
-                    <div class="DLP_VStack_8" id="DLP_Get_DOUBLE_XP_BOOST_1_ID" style="display: none;">
-                        <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">Would you like to redeem an XP Boost?</p>
-                        <div class="DLP_HStack_8">
-                            <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID" style="flex: 1 0 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][13]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="DLP_VStack_8" id="DLP_Get_Streak_Freeze_1_ID" style="display: none;">
                         <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">How many Streak Freezes would you like to get?</p>
                         <div class="DLP_HStack_8">
@@ -598,10 +541,7 @@ function Two() {
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div class="DLP_HStack_4 DLP_Hover_1" id="DLP_Universal_Back_1_Button_1_ID">
                         <p class="DLP_Text_Style_2" style="font-size: 20px;">⬅️</p>
-                        <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <div class="DLP_VStack_8" id="DLP_Main_Inputs_1_Divider_1_ID">
                     <div class="DLP_HStack_8">
@@ -656,18 +596,7 @@ function Two() {
                                 </div>
                             </div>
                         </div>
-                        <div class="DLP_VStack_8" id="DLP_Get_DOUBLE_XP_BOOST_2_ID" style="flex: 1 0 0;">
-                            <div class="DLP_HStack_8" style="align-items: center;">
-                                <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Inset_Icon_1_ID" style="color: rgba(var(--color-eel), 0.50);">⚡</p>
-                                <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">Would you like to redeem an XP Boost?</p>
-                            </div>
-                            <div class="DLP_HStack_8">
-                                <div class="DLP_Input_Button_Style_1_Active DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Inset_Button_1_ID" style="flex: 1 0 0;">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][13]}</p>
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="DLP_HStack_8">
                         <div class="DLP_VStack_8" id="DLP_Get_Streak_Freeze_2_ID" style="flex: 1 0 0;">
@@ -723,60 +652,18 @@ function Two() {
         </div>
 
 
-        <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_3_ID" style="display: none;">
+        <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_3_ID" style="display: block;">
             <div class="DLP_VStack_8">
                 <div class="DLP_VStack_8">
                     <div class="DLP_HStack_8">
-                        <div id="DLP_Secondary_1_Server_Connection_Button_1_ID" class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgb(var(--color-eel), 0.20); outline-offset: -2px; background: rgb(var(--color-eel), 0.10); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.32, 1), background 0.8s cubic-bezier(0.16, 1, 0.32, 1), outline 0.8s cubic-bezier(0.16, 1, 0.32, 1), filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1); padding: 10px 0px 10px 10px; opacity: 0.25; pointer-events: none;">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">🔗</p>
-                            <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #000; transition: 0.4s;">${systemText[systemLanguage][3]}</p>
-                        </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Donate_Button_1_ID" onclick="window.open('https://duolingopro.net/donate', '_blank');" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: lightgray; padding: 10px 0px 10px 10px;">
-                            <svg width="17" height="19" viewBox="0 0 17 19" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.5 5.90755C16.4968 3.60922 14.6997 1.72555 12.5913 1.04588C9.97298 0.201877 6.51973 0.324211 4.01956 1.49921C0.989301 2.92355 0.0373889 6.04355 0.00191597 9.15522C-0.0271986 11.7136 0.229143 18.4517 4.04482 18.4997C6.87998 18.5356 7.30214 14.8967 8.61397 13.1442C9.5473 11.8974 10.749 11.5452 12.2284 11.1806C14.7709 10.5537 16.5037 8.55506 16.5 5.90755Z"/>
-                            </svg>
-                            <p class="DLP_Text_Style_1" style="color: #FFF;">${systemText[systemLanguage][4]}</p>
-                        </div>
-                    </div>
-                    <div class="DLP_HStack_8">
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Feedback_1_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px);">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">💬</p>
-                            <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][5]}</p>
-                        </div>
+
                         <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Settings_1_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80); backdrop-filter: blur(16px);">
                             <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">⚙️</p>
                             <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][6]}</p>
                         </div>
                     </div>
-                    <div class="DLP_HStack_8">
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Main_Earn_Button_1_ID" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: lightgray; padding: 10px 0px 10px 10px;">
-                            <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🚀</p>
-                            <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">Boost</p>
-                        </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_YouTube_Button_1_ID" onclick="window.open('https://duolingopro.net/youtube', '_blank');" style="justify-content: center; flex: none; width: 40px; padding: 10px; outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-pink));">
-                            <svg width="22" height="16" viewBox="0 0 22 16" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.2043 1.0885C20.1084 1.33051 20.8189 2.041 21.0609 2.9451C21.4982 4.58216 21.5 7.99976 21.5 7.99976C21.5 7.99976 21.5 11.4174 21.0609 13.0544C20.8189 13.9585 20.1084 14.669 19.2043 14.911C17.5673 15.3501 11 15.3501 11 15.3501C11 15.3501 4.43274 15.3501 2.79568 14.911C1.89159 14.669 1.1811 13.9585 0.939084 13.0544C0.5 11.4174 0.5 7.99976 0.5 7.99976C0.5 7.99976 0.5 4.58216 0.939084 2.9451C1.1811 2.041 1.89159 1.33051 2.79568 1.0885C4.43274 0.649414 11 0.649414 11 0.649414C11 0.649414 17.5673 0.649414 19.2043 1.0885ZM14.3541 8.00005L8.89834 11.1497V4.85038L14.3541 8.00005Z"/>
-                            </svg>
-                        </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Discord_Button_1_ID" onclick="window.open('https://duolingopro.net/discord', '_blank');" style="justify-content: center; flex: none; width: 40px; padding: 10px; outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-indigo));">
-                            <svg width="22" height="16" viewBox="0 0 22 16" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.289 1.34C16.9296 0.714 15.4761 0.259052 13.9565 0C13.7699 0.332095 13.5519 0.77877 13.4016 1.1341C11.7862 0.894993 10.1857 0.894993 8.60001 1.1341C8.44972 0.77877 8.22674 0.332095 8.03844 0C6.51721 0.259052 5.06204 0.715671 3.70267 1.34331C0.960812 5.42136 0.21754 9.39811 0.589177 13.3184C2.40772 14.655 4.17011 15.467 5.90275 15.9984C6.33055 15.4189 6.71209 14.8028 7.04078 14.1536C6.41478 13.9195 5.81521 13.6306 5.24869 13.2952C5.39898 13.1856 5.546 13.071 5.68803 12.9531C9.14342 14.5438 12.8978 14.5438 16.3119 12.9531C16.4556 13.071 16.6026 13.1856 16.7512 13.2952C16.183 13.6322 15.5818 13.9211 14.9558 14.1553C15.2845 14.8028 15.6644 15.4205 16.0939 16C17.8282 15.4687 19.5922 14.6567 21.4107 13.3184C21.8468 8.77378 20.6658 4.83355 18.289 1.34ZM7.51153 10.9075C6.47426 10.9075 5.62361 9.95435 5.62361 8.7937C5.62361 7.63305 6.45609 6.67831 7.51153 6.67831C8.56699 6.67831 9.41761 7.63138 9.39945 8.7937C9.40109 9.95435 8.56699 10.9075 7.51153 10.9075ZM14.4884 10.9075C13.4511 10.9075 12.6005 9.95435 12.6005 8.7937C12.6005 7.63305 13.4329 6.67831 14.4884 6.67831C15.5438 6.67831 16.3945 7.63138 16.3763 8.7937C16.3763 9.95435 15.5438 10.9075 14.4884 10.9075Z"/>
-                            </svg>
-                        </div>
-                        <div class="DLP_Button_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_GitHub_Button_1_ID" onclick="window.open('https://duolingopro.net/github', '_blank');" style="justify-content: center; flex: none; width: 40px; padding: 10px; outline: 2px solid rgba(255, 255, 255, 0.20); outline-offset: -2px; background: #333333;">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="#FFF" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.0087 0.5C5.19766 0.5 0.5 5.3125 0.5 11.2662C0.5 16.0253 3.50995 20.0538 7.68555 21.4797C8.2076 21.5868 8.39883 21.248 8.39883 20.963C8.39883 20.7134 8.38162 19.8578 8.38162 18.9664C5.45836 19.6082 4.84962 17.683 4.84962 17.683C4.37983 16.4353 3.68375 16.1146 3.68375 16.1146C2.72697 15.4551 3.75345 15.4551 3.75345 15.4551C4.81477 15.5264 5.37167 16.5602 5.37167 16.5602C6.31103 18.1999 7.82472 17.7366 8.43368 17.4514C8.52058 16.7562 8.79914 16.2749 9.09491 16.0076C6.7634 15.758 4.31035 14.8312 4.31035 10.6957C4.31035 9.51928 4.72765 8.55678 5.38888 7.80822C5.28456 7.54091 4.9191 6.43556 5.49342 4.95616C5.49342 4.95616 6.38073 4.67091 8.38141 6.06128C9.23797 5.82561 10.1213 5.70573 11.0087 5.70472C11.896 5.70472 12.8005 5.82963 13.6358 6.06128C15.6367 4.67091 16.524 4.95616 16.524 4.95616C17.0983 6.43556 16.7326 7.54091 16.6283 7.80822C17.3069 8.55678 17.707 9.51928 17.707 10.6957C17.707 14.8312 15.254 15.7401 12.905 16.0076C13.2879 16.3463 13.6183 16.9878 13.6183 18.0039C13.6183 19.4477 13.6011 20.6064 13.6011 20.9627C13.6011 21.248 13.7926 21.5868 14.3144 21.4799C18.49 20.0536 21.5 16.0253 21.5 11.2662C21.5172 5.3125 16.8023 0.5 11.0087 0.5Z"/>
-                            </svg>
-                        </div>
-                    </div>
                 </div>
-                <div class="DLP_HStack_Auto_Top DLP_NoSelect">
-                    <div class="DLP_HStack_4">
-                        <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO LE</p>
-                    </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
-                </div>
+
                 <p class="DLP_Text_Style_1" style="display: none; transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); opacity: 0; filter: blur(4px);">You are using an outdated version of Duolingo PRO. <br><br>Please update Duolingo PRO or turn on automatic updates. </p>
                 <p class="DLP_Text_Style_1" style="display: none; transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); opacity: 0; filter: blur(4px);">Duolingo PRO failed to connect. This might be happening because of an issue on our system or your device. <br><br>Try updating Duolingo PRO. If the issue persists afterwards, join our Discord Server to get support. </p>
                 <p class="DLP_Text_Style_1" style="display: none; transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); opacity: 0; filter: blur(4px);">We are currently unable to receive new requests due to high demand. Join our Discord Server to learn more. <br><br>You can help us handle more demand by donating on Patreon while getting exclusive features and higher limits. </p>
@@ -856,14 +743,7 @@ function Two() {
                         <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][15]}</p>
                         <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">➡️</p>
                     </div>
-                    <div class="DLP_HStack_Auto" style="padding-top: 4px;">
-                        <div class="DLP_HStack_4 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Terms_1_Button_1_ID" style="align-items: center;">
-                            <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">${systemText[systemLanguage][14]}</p>
-                        </div>
-                        <div class="DLP_HStack_4 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Secondary_Whats_New_1_Button_1_ID" style="align-items: center;">
-                            <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][7]}</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -874,10 +754,7 @@ function Two() {
                 <div class="DLP_HStack_Auto_Top DLP_NoSelect">
                     <div class="DLP_HStack_4 DLP_Hover_1" id="DLP_Universal_Back_1_Button_1_ID">
                         <p class="DLP_Text_Style_2" style="font-size: 20px;">⬅️</p>
-                        <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO LE</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <div class="DLP_VStack_8" id="DLP_Main_Inputs_1_Divider_1_ID">
                     <div class="DLP_VStack_8" id="DLP_Get_PATH_2_ID">
@@ -967,58 +844,10 @@ function Two() {
         </div>
 
 
-        <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_5_ID" style="display: none;">
-            <div class="DLP_VStack_8">
-                <div class="DLP_HStack_Auto_Top DLP_NoSelect">
-                    <div class="DLP_HStack_4">
-                        <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
-                    </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
-                </div>
-                <p class="DLP_Text_Style_1 DLP_NoSelect" id="DLP_Terms_1_Text_1_ID">${systemText[systemLanguage][25]}</p>
-                <p class="DLP_Text_Style_1 DLP_NoSelect" id="DLP_Terms_1_Text_2_ID" style="display: none; align-self: stretch;">${systemText[systemLanguage][26]}</p>
-                <div class="DLP_Scroll_Box_Style_1">
-                    <p id="DLP_Terms_Main_Text_1_ID" class="DLP_Scroll_Box_Text_Style_1">${systemText[systemLanguage][27]}</p>
-                </div>
-                <div class="DLP_HStack_8" id="DLP_Terms_1_Button_1_ID">
-                    <div id="DLP_Terms_Decline_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10);">
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">❌</p>
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][28]}</p>
-                    </div>
-                    <div id="DLP_Terms_Accept_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-blue));">
-                        <p class="DLP_Text_Style_1" style="color: #FFF;">ACCEPT</p>
-                        <p class="DLP_Text_Style_1" style="color: #FFF;">✅</p>
-                    </div>
-                </div>
-                <div class="DLP_HStack_8" id="DLP_Terms_1_Button_2_ID" style="display: none;">
-                    <div class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" id="DLP_Terms_Back_Button_1_ID" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10);">
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">⬅️</p>
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][29]}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
-        <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_6_ID" style="display: none;">
-            <div class="DLP_VStack_8">
-                <div class="DLP_HStack_Auto_Top DLP_NoSelect">
-                    <div class="DLP_HStack_4">
-                        <p class="DLP_Text_Style_2">Duolingo</p>
-                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
-                    </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
-                </div>
-                <p class="DLP_Text_Style_1 DLP_NoSelect" style="opacity: 0.5;">${systemText[systemLanguage][30]}</p>
-                <div class="DLP_HStack_8">
-                    <div id="DLP_Terms_Declined_Back_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10);">
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">⬅️</p>
-                        <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">${systemText[systemLanguage][31]}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
 
 
         <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_7_ID" style="display: none;">
@@ -1028,7 +857,6 @@ function Two() {
                         <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⬅️</p>
                         <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][32]}</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
                 <div style="max-height: 320px; overflow-y: auto;">
                     <div class="DLP_VStack_8">
@@ -1059,46 +887,9 @@ function Two() {
                                 <input type="text" placeholder="0" id="DLP_Inset_Input_1_ID" class="DLP_Input_Input_Style_1" style="text-align: center;">
                             </div>
                         </div>
-                        <div id="DLP_Settings_Help_Us_Make_Better_Button_1_ID" class="DLP_HStack_8" style="justify-content: center; align-items: center;${alpha ? ' opacity: 0.5; pointer-events: none;' : ''}">
-                            <div class="DLP_VStack_0" style="align-items: flex-start; flex: 1 0 0;">
-                                <p class="DLP_Text_Style_1">Help Us Make Duolingo PRO Better</p>
-                                <p class="DLP_Text_Style_1" style="opacity: 0.5;">Allow Duolingo PRO to collect anonymous usage data for us to improve the script.</p>
-                            </div>
-                            <div id="DLP_Inset_Toggle_1_ID" class="DLP_Toggle_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🔘</p>
-                            </div>
-                        </div>
-                        <div id="DLP_Settings_Auto_Update_Toggle_1_ID" class="DLP_HStack_8" style="justify-content: center; align-items: center; opacity: 0.5; pointer-events: none; cursor: not-allowed;">
-                            <div class="DLP_VStack_0" style="align-items: flex-start; flex: 1 0 0;">
-                                <p class="DLP_Text_Style_1">${systemText[systemLanguage][34]}</p>
-                                <p class="DLP_Text_Style_1" style="opacity: 0.5;">${systemText[systemLanguage][35]}</p>
-                            </div>
-                            <div id="DLP_Inset_Toggle_1_ID" class="DLP_Toggle_Style_1 DLP_Magnetic_Hover_1 DLP_NoSelect">
-                                <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">🔘</p>
-                            </div>
-                        </div>
-                        <div id="DLP_Settings_Modern_Stats_Main_Box_1_ID" class="DLP_VStack_6" style="background: rgba(var(--DLP-blue), 0.10); outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; padding: 16px; border-radius: 8px;">
-                            <div style="display: flex; align-self: stretch; justify-content: space-between; align-items: center;">
-                                <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">3.1 Stats</p>
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);"></p>
-                            </div>
-                            <div style="display: flex; align-self: stretch; justify-content: space-between; align-items: center;">
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">XP Gained:</p>
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);"></p>
-                            </div>
-                            <div style="display: flex; align-self: stretch; justify-content: space-between; align-items: center;">
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">Gems Gained:</p>
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);"></p>
-                            </div>
-                            <div style="display: flex; align-self: stretch; justify-content: space-between; align-items: center;">
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">Streak Gained:</p>
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);"></p>
-                            </div>
-                            <div style="display: flex; align-self: stretch; justify-content: space-between; align-items: center;">
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);">Heart Refills Requested:</p>
-                                <p class="DLP_Text_Style_1" style="color: rgba(var(--DLP-blue), 0.5);"></p>
-                            </div>
-                        </div>
+
+
+
                         <div id="DLP_Settings_Legacy_Stats_Main_Box_1_ID" class="DLP_VStack_6" style="background: rgba(var(--DLP-blue), 0.10); outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; padding: 16px; border-radius: 8px;">
                             <div style="display: flex; align-self: stretch; justify-content: space-between; align-items: center;">
                                 <p class="DLP_Text_Style_1" style="color: rgb(var(--DLP-blue));">Legacy Mode Stats</p>
@@ -1125,92 +916,13 @@ function Two() {
         </div>
 
 
-        <div clas="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_8_ID" style="display: none;">
-            <div class="DLP_VStack_8">
-                <div class="DLP_HStack_Auto_Top DLP_NoSelect">
-                    <div id="DLP_Universal_Back_1_Button_1_ID" class="DLP_HStack_4 DLP_Hover_1">
-                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⬅️</p>
-                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][38]}</p>
-                    </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
-                </div>
-                <div class="DLP_VStack_4" style="padding: 16px; border-radius: 8px; outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10); box-sizing: border-box;">
-                    <div class="DLP_HStack_4">
-                        <p class="DLP_Text_Style_1 DLP_NoSelect" style="color: rgb(var(--DLP-blue));">❓</p>
-                        <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch; color: rgb(var(--DLP-blue));">Need Support?</p>
-                    </div>
-                    <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch; color: rgba(var(--DLP-blue), 0.5);">Get help from our <a href='https://www.duolingopro.net/faq' target='_blank' style='font-family: Duolingo PRO Rounded; color: rgb(var(--DLP-blue)); text-decoration: underline;'>FAQ page</a>, enhanced with AI, or join our <a href='https://www.duolingopro.net/discord' target='_blank' style='font-family: Duolingo PRO Rounded; color: rgb(var(--DLP-blue)); text-decoration: underline;'>Discord server</a> and talk with the devs.</p>
-                </div>
-                <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][39]}</p>
-                <textarea id="DLP_Feedback_Text_Input_1_ID" class="DLP_Large_Input_Box_Style_1" style="height: 128px; max-height: 256px;" placeholder="${systemText[systemLanguage][40]}"/></textarea>
-                <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][41]}</p>
-                <div class="DLP_HStack_8">
-                    <div id="DLP_Feedback_Type_Bug_Report_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Feedback_Type_Button_Style_1_OFF" style="transition: background 0.4s, outline 0.4s, filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1);">
-                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="transition: 0.4s;">🐞</p>
-                        <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="transition: 0.4s;">${systemText[systemLanguage][42]}</p>
-                    </div>
-                    <div id="DLP_Feedback_Type_Suggestion_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect DLP_Feedback_Type_Button_Style_2_ON" style="transition: background 0.4s, outline 0.4s, filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1);">
-                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="transition: 0.4s;">💡</p>
-                        <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="transition: 0.4s;">${systemText[systemLanguage][43]}</p>
-                    </div>
-                </div>
-                <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch;">${systemText[systemLanguage][44]}</p>
-                <div class="DLP_HStack_8">
-                    <div id="DLP_Feedback_Attachment_Upload_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(var(--DLP-blue), 0.20); outline-offset: -2px; background: rgba(var(--DLP-blue), 0.10); transition: background 0.4s, outline 0.4s, filter 0.4s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1);">
-                        <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue)); transition: 0.4s;">${systemText[systemLanguage][45]}</p>
-                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">📎</p>
-                    </div>
-                </div>
-                <input type="file" accept="image/png, image/jpg, image/jpeg, video/mp4, image/gif, video/mov, video/webm" id="DLP_Feedback_Attachment_Input_Hidden_1_ID" style="display: none;"/>
-                <div class="DLP_HStack_8">
-                    <div id="DLP_Feedback_Send_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-blue));">
-                        <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: #FFF;">${systemText[systemLanguage][47]}</p>
-                        <p class="DLP_Text_Style_1 DLP_Inset_Icon_1_ID" style="color: #FFF;">✅</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
-        <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_9_ID" style="display: none;">
-            <div class="DLP_VStack_8">
-                <div class="DLP_HStack_Auto_Top DLP_NoSelect">
-                    <div id="DLP_Universal_Back_1_Button_1_ID" class="DLP_HStack_4 DLP_Hover_1">
-                        <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⬅️</p>
-                        <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][48]}</p>
-                    </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
-                </div>
-                <div class="DLP_VStack_8" id="DLP_Release_Notes_List_1_ID" style="height: 256px; padding: 0 16px;"></div>
-                <div id="DLP_Release_Notes_Controls" class="DLP_NoSelect" style="display: flex; align-items: center; gap: 8px; margin: 8px;">
-                    <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_Inset_Icon_1_ID" style="color: rgb(var(--DLP-blue));">⬅️</p>
-                    <p class="DLP_Text_Style_1 DLP_Inset_Text_1_ID" style="color: rgb(var(--DLP-blue));"></p>
-                    <p class="DLP_Text_Style_1 DLP_Magnetic_Hover_1 DLP_Inset_Icon_2_ID" style="color: rgb(var(--DLP-blue));">➡️</p>
-                </div>
-            </div>
-        </div>
 
 
-        <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_10_ID" style="display: none;">
-            <div class="DLP_VStack_8">
-                <div class="DLP_VStack_8" style="padding: 8px 0;">
-                    <div class="DLP_VStack_0">
-                        <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${systemText[systemLanguage][52]}</p>
-                        <div class="DLP_HStack_4" style="align-self: auto;">
-                            <p class="DLP_Text_Style_2">Duolingo</p>
-                            <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PRO 3.1</p>
-                        </div>
-                    </div>
-                    <p class="DLP_Text_Style_1 DLP_NoSelect" style="align-self: stretch; text-align: center;">${systemText[systemLanguage][53]}</p>
-                </div>
-                <div class="DLP_HStack_8">
-                    <div id="DLP_Onboarding_Start_Button_1_ID" class="DLP_Button_Style_2 DLP_Magnetic_Hover_1 DLP_NoSelect" style="outline: 2px solid rgba(0, 0, 0, 0.20); outline-offset: -2px; background: rgb(var(--DLP-blue));">
-                        <p class="DLP_Text_Style_1" style="color: #FFF;">${systemText[systemLanguage][54]}</p>
-                        <p class="DLP_Text_Style_1" style="color: #FFF;">✅</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+
 
 
         <div class="DLP_Main_Box_Divider" id="DLP_Main_Box_Divider_11_ID" style="display: none;">
@@ -1220,7 +932,6 @@ function Two() {
                         <p class="DLP_Text_Style_2" style="font-size: 20px; background: url(${serverURL}/static/images/flow/primary/512/light.png) lightgray 0% / cover no-repeat; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⬅️</p>
                         <p class="DLP_Text_Style_2" style="background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Support</p>
                     </div>
-                    <p class="DLP_Text_Style_1" style="font-size: 14px; background: lightgray; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${versionName}</p>
                 </div>
 
                 <div class="DLP_VStack_8" style="height: 500px;">
@@ -2387,6 +2098,7 @@ svg {
 }
 
 function One() {
+    if (document.querySelector('.DLP_Main')) return;
     Two();
 
     document.head.appendChild(Object.assign(document.createElement('style'), { type: 'text/css', textContent: CSS1 }));
@@ -2959,30 +2671,15 @@ function One() {
 
     let isBusySwitchingPages = false;
     let pages = {
-        "DLP_Onboarding_Start_Button_1_ID": [5],
-        "DLP_Switch_Legacy_Button_1_ID": [3],
 
         "DLP_Universal_Back_1_Button_1_ID": [1],
 
         "DLP_Main_Settings_1_Button_1_ID": [7],
-        //"DLP_Main_Feedback_1_Button_1_ID": [8],
 
-        "DLP_Main_Feedback_1_Button_1_ID": [11],
-
-        "DLP_Main_Whats_New_1_Button_1_ID": [9],
         "DLP_Main_See_More_1_Button_1_ID": [2],
-        "DLP_Main_Terms_1_Button_1_ID": [5],
 
         "DLP_Secondary_Settings_1_Button_1_ID": [7],
-        "DLP_Secondary_Feedback_1_Button_1_ID": [8],
-        "DLP_Secondary_Whats_New_1_Button_1_ID": [9],
-        "DLP_Secondary_See_More_1_Button_1_ID": [4],
-        "DLP_Secondary_Terms_1_Button_1_ID": [5],
-
-        "DLP_Terms_Back_Button_1_ID": [1],
-        "DLP_Terms_Accept_Button_1_ID": [1],
-        "DLP_Terms_Decline_Button_1_ID": [6],
-        "DLP_Terms_Declined_Back_Button_1_ID": [5]
+        "DLP_Secondary_See_More_1_Button_1_ID": [4]
     };
     function goToPage(to, buttonID) {
         if (isBusySwitchingPages) return;
@@ -2995,61 +2692,15 @@ function One() {
 
         let mainBoxNewToBeWidth = mainBox.offsetWidth;
 
-        if (buttonID === 'DLP_Main_Terms_1_Button_1_ID' || buttonID === 'DLP_Secondary_Terms_1_Button_1_ID') {
-            document.querySelector(`#DLP_Terms_1_Text_1_ID`).style.display = 'none';
-            document.querySelector(`#DLP_Terms_1_Button_1_ID`).style.display = 'none';
-            document.querySelector(`#DLP_Terms_1_Text_2_ID`).style.display = 'block';
-            document.querySelector(`#DLP_Terms_1_Button_2_ID`).style.display = 'block';
-        } else if (buttonID === 'DLP_Terms_Back_Button_1_ID') {
+        if (buttonID === 'DLP_Universal_Back_1_Button_1_ID' || to === -1) {
             toNumber = lastPage;
             toPage = document.querySelector(`#DLP_Main_Box_Divider_${toNumber}_ID`);
-            setTimeout(() => {
-                document.querySelector(`#DLP_Terms_1_Text_1_ID`).style.display = 'block';
-                document.querySelector(`#DLP_Terms_1_Button_1_ID`).style.display = 'block';
-                document.querySelector(`#DLP_Terms_1_Text_2_ID`).style.display = 'none';
-                document.querySelector(`#DLP_Terms_1_Button_2_ID`).style.display = 'none';
-            }, 400);
-        } else if (buttonID === 'DLP_Universal_Back_1_Button_1_ID' || to === -1) {
-            toNumber = lastPage;
-            toPage = document.querySelector(`#DLP_Main_Box_Divider_${toNumber}_ID`);
-        } else if (buttonID === 'DLP_Switch_Legacy_Button_1_ID') {
-            let button = document.querySelector('#DLP_Switch_Legacy_Button_1_ID');
-            console.log(storageSession.legacy.page);
-            if (storageSession.legacy.page !== 0) {
-                toNumber = 1;
-                toPage = document.querySelector(`#DLP_Main_Box_Divider_${toNumber}_ID`);
-                setButtonState(button, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][106], icon: '🏛️' }, { text: '', icon: '' });
-                storageSession.legacy.page = 0;
-                saveStorageSession();
-            } else {
-                toNumber = 3;
-                toPage = document.querySelector(`#DLP_Main_Box_Divider_${toNumber}_ID`);
-                setButtonState(button, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][105], icon: '􀂑' }, { text: '', icon: '' });
-                storageSession.legacy.page = 1;
-                saveStorageSession();
-            }
-        } else if (buttonID === 'DLP_Terms_Accept_Button_1_ID') {
-            storageLocal.terms = newTermID;
-            saveStorageLocal();
-            connectToServer();
-        } else if (buttonID === 'DLP_Onboarding_Start_Button_1_ID') {
-            storageLocal.onboarding = true;
-            saveStorageLocal();
-            goToPage(1);
-        } else if (buttonID === 'DLP_Main_Feedback_1_Button_1_ID') {
-            setTimeout(() => {
-                const chatBox = document.querySelector('#DLP_Main_Box_Divider_11_ID')?.querySelector('.DLP_Chat_Box_1_ID_1');
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 420);
-        } else if (toNumber === 7) {
+        }
+
+        if (toNumber === 7) {
             const trackingSinceDateString = new Date(storageLocal.stats.tracking_since).toLocaleDateString(systemLanguage, { month: 'short', day: 'numeric', year: 'numeric' });
 
-            let modernStatsBox = document.querySelector('#DLP_Main_Box_Divider_7_ID').querySelector('#DLP_Settings_Modern_Stats_Main_Box_1_ID');
-            modernStatsBox.children[0].lastElementChild.innerHTML = "since " + trackingSinceDateString;
-            modernStatsBox.children[1].lastElementChild.innerHTML = storageLocal.stats.modern.xp;
-            modernStatsBox.children[2].lastElementChild.innerHTML = storageLocal.stats.modern.gem;
-            modernStatsBox.children[3].lastElementChild.innerHTML = storageLocal.stats.modern.streak;
-            modernStatsBox.children[4].lastElementChild.innerHTML = storageLocal.stats.modern.heart_refill;
+
 
             let legacyStatsBox = document.querySelector('#DLP_Main_Box_Divider_7_ID').querySelector('#DLP_Settings_Legacy_Stats_Main_Box_1_ID');
             legacyStatsBox.children[0].lastElementChild.innerHTML = "since " + trackingSinceDateString;
@@ -3072,8 +2723,7 @@ function One() {
         else if (toNumber === 11) mainBoxNewToBeWidth = "400";
         else mainBoxNewToBeWidth = "312";
 
-        if ([1, 2, 3, 4].includes(toNumber)) legacyButtonVisibility(true);
-        else legacyButtonVisibility(false);
+
 
         if (toNumber === 3) {
             storageSession.legacy.page = 1;
@@ -3194,13 +2844,13 @@ function One() {
         if (value) {
             setButtonState(button, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][104], icon: '👁️' }, { text: '', icon: '' });
             main.style.bottom = `-${mainBoxHeight - 8}px`;
-            legacyButtonVisibility(false);
+
             mainBox.style.filter = "blur(8px)";
             mainBox.style.opacity = "0";
         } else {
             setButtonState(button, { button: 'rgb(var(--DLP-blue)', outline: 'rgba(0, 0, 0, 0.20)', text: '#FFF', icon: '#FFF' }, { text: systemText[systemLanguage][103], icon: '􀋰' }, { text: '', icon: '' });
             main.style.bottom = "16px";
-            if (currentPage === 1 || currentPage === 3) legacyButtonVisibility(true);
+
             mainBox.style.filter = "";
             mainBox.style.opacity = "";
         }
@@ -3213,26 +2863,8 @@ function One() {
     document.querySelector(`.DLP_Main`).style.bottom = `-${document.querySelector(`.DLP_Main_Box`).offsetHeight - 8}px`;
     document.querySelector(`.DLP_Main_Box`).style.opacity = "0";
     document.querySelector(`.DLP_Main_Box`).style.filter = "blur(8px)";
-    document.querySelector(`#DLP_Switch_Legacy_Button_1_ID`).style.filter = "blur(8px)";
-    document.querySelector(`#DLP_Switch_Legacy_Button_1_ID`).style.opacity = "0";
-    document.querySelector(`#DLP_Switch_Legacy_Button_1_ID`).style.display = "none";
+
     hide(false, false);
-    function legacyButtonVisibility(value) {
-        let legacyButton = document.querySelector(`#DLP_Switch_Legacy_Button_1_ID`);
-        legacyButton.style.transition = 'width 0.8s cubic-bezier(0.77,0,0.18,1), opacity 0.8s cubic-bezier(0.16, 1, 0.32, 1), filter 0.8s cubic-bezier(0.16, 1, 0.32, 1), transform 0.4s cubic-bezier(0.16, 1, 0.32, 1)';
-        if (value) {
-            legacyButton.style.display = "";
-            legacyButton.offsetWidth;
-            legacyButton.style.filter = "";
-            legacyButton.style.opacity = "";
-        } else {
-            legacyButton.style.filter = "blur(8px)";
-            legacyButton.style.opacity = "0";
-            setTimeout(() => {
-                legacyButton.style.display = "none";
-            }, 800);
-        }
-    }
     function handleVisibility() {
         if (document.querySelector('.MYehf') !== null || window.location.pathname.includes('/lesson') || window.location.pathname === '/practice') {
             document.querySelector('.DLP_Main').style.display = 'none';
@@ -3867,13 +3499,14 @@ function One() {
 
     let pageSwitching = false;
     function process1() {
+        // console.log("process1 check", storageSession.legacy.status, storageSession.legacy[storageSession.legacy.status]?.amount);
         if (window.location.href.includes('/lesson') || window.location.href.includes('/practice') || window.location.href.includes('/practice-hub/listening-practice')) return;
         if (storageSession.legacy.status && storageSession.legacy[storageSession.legacy.status].amount > 0) {
             if (pageSwitching) return;
             pageSwitching = true;
             setTimeout(() => {
                 checkChest();
-            }, 2000);
+            }, 500);
         } else {
             pageSwitching = false;
         }
@@ -3904,7 +3537,7 @@ function One() {
                 if (!images.length) {
                     setTimeout(function () {
                         process2();
-                    }, 2000);
+                    }, 500);
                 } else {
                     let imagesProcessed = 0;
                     let chestFound = false;
@@ -3935,20 +3568,7 @@ function One() {
         }
     };
 
-    if (storageSession.legacy.page === 1) {
-        document.querySelector(`#DLP_Main_Box_Divider_${currentPage}_ID`).style.display = 'none';
-        document.querySelector(`#DLP_Main_Box_Divider_3_ID`).style.display = 'block';
-        currentPage = 3;
-        let button = document.querySelector('#DLP_Switch_Legacy_Button_1_ID');
-        setButtonState(button, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][105], icon: '􀂑' }, { text: '', icon: '' });
-    } else if (storageSession.legacy.page === 2) {
-        document.querySelector(`#DLP_Main_Box_Divider_${currentPage}_ID`).style.display = 'none';
-        document.querySelector(`#DLP_Main_Box_Divider_4_ID`).style.display = 'block';
-        lastPage = 3;
-        currentPage = 4;
-        let button = document.querySelector('#DLP_Switch_Legacy_Button_1_ID');
-        setButtonState(button, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][105], icon: '􀂑' }, { text: '', icon: '' });
-    }
+
 
 
 
@@ -3968,8 +3588,7 @@ function One() {
             "DLP_Get_GEM_2_ID": ["gem"],
             "DLP_Get_SUPER_1_ID": ["super"],
             "DLP_Get_SUPER_2_ID": ["super"],
-            "DLP_Get_DOUBLE_XP_BOOST_1_ID": ["double_xp_boost"],
-            "DLP_Get_DOUBLE_XP_BOOST_2_ID": ["double_xp_boost"],
+
             "DLP_Get_Streak_Freeze_1_ID": ["streak_freeze"],
             "DLP_Get_Streak_Freeze_2_ID": ["streak_freeze"],
             "DLP_Get_Heart_Refill_1_ID": ["heart_refill"],
@@ -4129,17 +3748,7 @@ function One() {
     });
 
 
-    let DLP_Server_Connection_Button = document.getElementById("DLP_Main_1_Server_Connection_Button_1_ID");
-    let DLP_Server_Connection_Button_2 = document.getElementById("DLP_Secondary_1_Server_Connection_Button_1_ID");
-    DLP_Server_Connection_Button.addEventListener('click', () => {
-        if (DLP_Server_Connection_Button.getAttribute("data-dlp-connection-status") === "outdated") {
-            // window.open("https://duolingopro.net/update/userscript", "_blank");
-            console.log("Update check disabled (Offline)");
-        } else if (DLP_Server_Connection_Button.getAttribute("data-dlp-connection-status") === "error") {
-            // window.open("https://status.duolingopro.net", "_blank");
-            console.log("Status page link disabled (Offline)");
-        }
-    });
+
     function updateConnetionButtonStyles(button, color, content, animation) {
         let iconToChange = button.querySelector(".DLP_Inset_Icon_1_ID");
         let textToChange = button.querySelector(".DLP_Inset_Text_1_ID");
@@ -4262,14 +3871,11 @@ function One() {
         // Server connection disabled
         console.log("Offline mode: Server connection skipped.");
 
-        // Mock successful onboarding to ensure UI allows interaction
+        // Ensure onboarding is always true in Legacy Mode to skip welcome page
         if (!storageLocal.onboarding) {
             storageLocal.onboarding = true;
             saveStorageLocal();
-        }
-
-        // Update UI to show "Offline" state to avoid "Connecting..." forever
-        const updateOfflineBtn = (btnId) => {
+        } const updateOfflineBtn = (btnId) => {
             const btn = document.getElementById(btnId);
             if (btn) {
                 btn.style.opacity = '1';
@@ -5215,125 +4821,7 @@ function One() {
         });
     }
 
-    let DLP_Feedback_Text_Input_1_ID = document.getElementById("DLP_Feedback_Text_Input_1_ID");
-    let DLP_Feedback_Type_Bug_Report_Button_1_ID = document.getElementById("DLP_Feedback_Type_Bug_Report_Button_1_ID");
-    let DLP_Feedback_Type_Suggestion_Button_1_ID = document.getElementById("DLP_Feedback_Type_Suggestion_Button_1_ID");
-    let DLP_Feedback_Attachment_Upload_Button_1_ID = document.getElementById("DLP_Feedback_Attachment_Upload_Button_1_ID");
-    let DLP_Feedback_Attachment_Input_Hidden_1_ID = document.getElementById("DLP_Feedback_Attachment_Input_Hidden_1_ID");
-    let DLP_Feedback_Send_Button_1_ID = document.getElementById("DLP_Feedback_Send_Button_1_ID");
 
-    let sendFeedbackStatus = '';
-    DLP_Feedback_Send_Button_1_ID.addEventListener('click', () => {
-        if (sendFeedbackStatus !== '') return;
-        let FeedbackText = DLP_Feedback_Text_Input_1_ID.value;
-        sendFeedbackServer(feedbackType, FeedbackText);
-
-        setButtonState(DLP_Feedback_Send_Button_1_ID, { button: 'linear-gradient(0deg, rgba(var(--DLP-blue), 0.10) 0%, rgba(var(--DLP-blue), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-blue), 0.20)', text: 'rgb(var(--DLP-blue))', icon: 'rgb(var(--DLP-blue))' }, { text: systemText[systemLanguage][111], icon: '🔗' }, { text: '', icon: 'DLP_Rotate_360_Animation_1 4s ease-in-out infinite' }, () => {
-            function f() {
-                if (sendFeedbackStatus === 'sent') {
-                    setButtonState(DLP_Feedback_Send_Button_1_ID, { button: 'linear-gradient(0deg, rgba(var(--DLP-green), 0.10) 0%, rgba(var(--DLP-green), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-green), 0.20)', text: 'rgb(var(--DLP-green))', icon: 'rgb(var(--DLP-green))' }, { text: systemText[systemLanguage][112], icon: '🔘' }, { text: '', icon: ' ' }, () => {
-                        confetti();
-                    });
-                } else if (sendFeedbackStatus === 'error') {
-                    setButtonState(DLP_Feedback_Send_Button_1_ID, { button: 'linear-gradient(0deg, rgba(var(--DLP-pink), 0.10) 0%, rgba(var(--DLP-pink), 0.10) 100%), rgba(var(--color-snow), 0.80)', outline: 'rgba(var(--DLP-pink), 0.20)', text: 'rgb(var(--DLP-pink))', icon: 'rgb(var(--DLP-pink))' }, { text: systemText[systemLanguage][115], icon: '❌' }, { text: '', icon: ' ' }, () => {
-                    });
-                } else if (sendFeedbackStatus === 'sending') {
-                    setTimeout(() => { f(); }, 800);
-                }
-            }
-            f();
-        });
-    });
-
-    let feedbackType = 'Suggestion';
-    DLP_Feedback_Type_Bug_Report_Button_1_ID.addEventListener('click', () => {
-        feedbackType = 'Bug Report';
-        DLP_Feedback_Type_Bug_Report_Button_1_ID.classList.add('DLP_Feedback_Type_Button_Style_1_ON');
-        DLP_Feedback_Type_Bug_Report_Button_1_ID.classList.remove('DLP_Feedback_Type_Button_Style_1_OFF');
-        DLP_Feedback_Type_Suggestion_Button_1_ID.classList.add('DLP_Feedback_Type_Button_Style_2_OFF');
-        DLP_Feedback_Type_Suggestion_Button_1_ID.classList.remove('DLP_Feedback_Type_Button_Style_2_ON');
-    });
-    DLP_Feedback_Type_Suggestion_Button_1_ID.addEventListener('click', () => {
-        feedbackType = 'Suggestion';
-        DLP_Feedback_Type_Bug_Report_Button_1_ID.classList.add('DLP_Feedback_Type_Button_Style_1_OFF');
-        DLP_Feedback_Type_Bug_Report_Button_1_ID.classList.remove('DLP_Feedback_Type_Button_Style_1_ON');
-        DLP_Feedback_Type_Suggestion_Button_1_ID.classList.add('DLP_Feedback_Type_Button_Style_2_ON');
-        DLP_Feedback_Type_Suggestion_Button_1_ID.classList.remove('DLP_Feedback_Type_Button_Style_2_OFF');
-    });
-    let currentFileName = '';
-    setInterval(() => {
-        if (DLP_Feedback_Attachment_Input_Hidden_1_ID.files.length > 0) {
-            let fileName = DLP_Feedback_Attachment_Input_Hidden_1_ID.files[0].name;
-            if (currentFileName === fileName) return;
-            currentFileName = fileName;
-            DLP_Feedback_Attachment_Upload_Button_1_ID.querySelector('.DLP_Inset_Text_1_ID').style.filter = 'blur(4px)';
-            DLP_Feedback_Attachment_Upload_Button_1_ID.querySelector('.DLP_Inset_Text_1_ID').style.opacity = '0';
-            DLP_Feedback_Attachment_Upload_Button_1_ID.querySelector('.DLP_Inset_Icon_1_ID').style.filter = 'blur(4px)';
-            DLP_Feedback_Attachment_Upload_Button_1_ID.querySelector('.DLP_Inset_Icon_1_ID').style.opacity = '0';
-            DLP_Feedback_Attachment_Upload_Button_1_ID.style.background = 'rgb(var(--DLP-blue))';
-            DLP_Feedback_Attachment_Upload_Button_1_ID.style.outline = '2px solid rgba(0, 0, 0, 0.20)';
-            setTimeout(() => {
-                DLP_Feedback_Attachment_Upload_Button_1_ID.querySelector('.DLP_Inset_Icon_1_ID').style.display = 'none';
-                DLP_Feedback_Attachment_Upload_Button_1_ID.querySelector('.DLP_Inset_Text_1_ID').textContent = fileName;
-                DLP_Feedback_Attachment_Upload_Button_1_ID.querySelector('.DLP_Inset_Text_1_ID').style.color = '#FFF';
-                DLP_Feedback_Attachment_Upload_Button_1_ID.querySelector('.DLP_Inset_Text_1_ID').style.filter = '';
-                DLP_Feedback_Attachment_Upload_Button_1_ID.querySelector('.DLP_Inset_Text_1_ID').style.opacity = '';
-            }, 400);
-        }
-    }, 1000);
-    DLP_Feedback_Attachment_Upload_Button_1_ID.addEventListener('click', () => {
-        DLP_Feedback_Attachment_Input_Hidden_1_ID.click();
-    });
-
-    DLP_Feedback_Send_Button_1_ID.style.pointerEvents = 'none';
-    DLP_Feedback_Send_Button_1_ID.style.opacity = '0.5';
-    DLP_Feedback_Text_Input_1_ID.addEventListener("input", function () {
-        if (DLP_Feedback_Text_Input_1_ID.value.replace(/\s/g, "").length <= 16) {
-            DLP_Feedback_Send_Button_1_ID.style.pointerEvents = 'none';
-            DLP_Feedback_Send_Button_1_ID.style.opacity = '0.5';
-        } else {
-            DLP_Feedback_Send_Button_1_ID.style.pointerEvents = '';
-            DLP_Feedback_Send_Button_1_ID.style.opacity = '';
-        }
-    });
-    async function sendFeedbackServer(head, body) {
-        try {
-            sendFeedbackStatus = 'sending';
-
-            let payload = {
-                head: head,
-                body: body,
-                version: versionFormal
-            };
-
-            if (DLP_Feedback_Attachment_Input_Hidden_1_ID.files.length > 0) {
-                const file = DLP_Feedback_Attachment_Input_Hidden_1_ID.files[0];
-                const base64File = await new Promise((resolve) => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
-                        resolve(reader.result);
-                    };
-                    reader.readAsDataURL(file);
-                });
-                payload.file = base64File;
-            }
-
-            // Feedback disabled
-            const response = { ok: true, json: async () => ({ status: true, notification: { icon: "􀄔", head: "Feedback Disabled", body: "Feedback is disabled in this offline version.", duration: 5 } }) };
-
-
-            const responseData = await response.json();
-
-            if (responseData.status) sendFeedbackStatus = 'sent';
-            else sendFeedbackStatus = 'error';
-
-            showNotification(responseData.notification.icon, responseData.notification.head, responseData.notification.body, responseData.notification.duration);
-        } catch (error) {
-            console.error('Error:', error);
-            sendFeedbackStatus = 'error';
-            showNotification("error", systemText[systemLanguage][206], systemText[systemLanguage][207], 30);
-        }
-    }
 
 
     async function handleClick(button, id, amount) {
@@ -5501,7 +4989,7 @@ function One() {
                 confetti();
                 setTimeout(() => {
                     let buttonContentText = systemText[systemLanguage][9];
-                    if (id === 'super' || id === 'double_xp_boost') buttonContentText = systemText[systemLanguage][13];
+                    if (id === 'super') buttonContentText = systemText[systemLanguage][13];
                     else if (id === 'heart_refill') buttonContentText = systemText[systemLanguage][229];
                     setButtonState(
                         button,
@@ -5558,7 +5046,7 @@ function One() {
         { base: 'DLP_Get_GEM', type: 'gem', input: true },
         { base: 'DLP_Get_Streak', type: 'streak', input: true },
         { base: 'DLP_Get_SUPER', type: 'super' },
-        { base: 'DLP_Get_DOUBLE_XP_BOOST', type: 'double_xp_boost' },
+
         { base: 'DLP_Get_Streak_Freeze', type: 'streak_freeze', input: true },
         { base: 'DLP_Get_Heart_Refill', type: 'heart_refill' }
     ];
@@ -5619,14 +5107,10 @@ function One() {
     let DLP_Settings_Show_Solve_Buttons_1_ID = document.getElementById("DLP_Settings_Show_Solve_Buttons_1_ID");
     let DLP_Settings_Show_AutoServer_Button_1_ID = document.getElementById("DLP_Settings_Show_AutoServer_Button_1_ID");
     let DLP_Settings_Legacy_Solve_Speed_1_ID = document.getElementById("DLP_Settings_Legacy_Solve_Speed_1_ID");
-    let DLP_Settings_Help_Us_Make_Better_Button_1_ID = document.getElementById("DLP_Settings_Help_Us_Make_Better_Button_1_ID");
-    let DLP_Settings_Auto_Update_Toggle_1_ID = document.getElementById("DLP_Settings_Auto_Update_Toggle_1_ID");
 
     handleToggleClick(DLP_Settings_Show_Solve_Buttons_1_ID.querySelector('#DLP_Inset_Toggle_1_ID'), DLP_Settings_Var.showSolveButtons);
     if (alpha) handleToggleClick(DLP_Settings_Show_AutoServer_Button_1_ID.querySelector('#DLP_Inset_Toggle_1_ID'), DLP_Settings_Var.showAutoServerButton);
     else DLP_Settings_Show_AutoServer_Button_1_ID.remove();
-    handleToggleClick(DLP_Settings_Auto_Update_Toggle_1_ID.querySelector('#DLP_Inset_Toggle_1_ID'), DLP_Settings_Var.autoUpdate);
-    handleToggleClick(DLP_Settings_Help_Us_Make_Better_Button_1_ID.querySelector('#DLP_Inset_Toggle_1_ID'), DLP_Settings_Var.anonymousUsageData);
     DLP_Settings_Legacy_Solve_Speed_1_ID.querySelector('#DLP_Inset_Input_1_ID').value = DLP_Settings_Var.solveSpeed;
 
     DLP_Settings_Legacy_Solve_Speed_1_ID.querySelector('#DLP_Inset_Input_1_ID').addEventListener("input", function () {
@@ -5696,17 +5180,6 @@ function One() {
             console.error(e);
         }
     }
-    DLP_Settings_Auto_Update_Toggle_1_ID.querySelector('#DLP_Inset_Toggle_1_ID').addEventListener('click', () => {
-        if (DLP_Settings_Toggle_Busy) return;
-        if (!greasyfork) {
-            DLP_Settings_Var.autoUpdate = !DLP_Settings_Var.autoUpdate;
-            DLP_Settings_Toggle_Busy = true;
-            handleToggleClick(DLP_Settings_Auto_Update_Toggle_1_ID.querySelector('#DLP_Inset_Toggle_1_ID'), DLP_Settings_Var.autoUpdate);
-            setTimeout(() => {
-                DLP_Settings_Toggle_Busy = false;
-            }, 800);
-        }
-    });
     DLP_Settings_Show_Solve_Buttons_1_ID.querySelector('#DLP_Inset_Toggle_1_ID').addEventListener('click', () => {
         if (DLP_Settings_Toggle_Busy) return;
         DLP_Settings_Var.showSolveButtons = !DLP_Settings_Var.showSolveButtons;
@@ -5721,16 +5194,6 @@ function One() {
         DLP_Settings_Var.showAutoServerButton = !DLP_Settings_Var.showAutoServerButton;
         DLP_Settings_Toggle_Busy = true;
         handleToggleClick(DLP_Settings_Show_AutoServer_Button_1_ID.querySelector('#DLP_Inset_Toggle_1_ID'), DLP_Settings_Var.showAutoServerButton);
-        setTimeout(() => {
-            DLP_Settings_Toggle_Busy = false;
-        }, 800);
-    });
-    DLP_Settings_Help_Us_Make_Better_Button_1_ID.querySelector('#DLP_Inset_Toggle_1_ID').addEventListener('click', () => {
-        if (DLP_Settings_Toggle_Busy) return;
-        if (alpha) return;
-        DLP_Settings_Var.anonymousUsageData = !DLP_Settings_Var.anonymousUsageData;
-        DLP_Settings_Toggle_Busy = true;
-        handleToggleClick(DLP_Settings_Help_Us_Make_Better_Button_1_ID.querySelector('#DLP_Inset_Toggle_1_ID'), DLP_Settings_Var.anonymousUsageData);
         setTimeout(() => {
             DLP_Settings_Toggle_Busy = false;
         }, 800);
@@ -5916,71 +5379,7 @@ function One() {
 
 
 
-    async function generateEarnKey() {
-        // Offline mock for earn key
-        return "OFFLINE_EARN_KEY";
 
-        const endpoint = `https://api.duolingopro.net/earn/connect/generate`;
-
-        try {
-            const response = await fetch(endpoint, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${document.cookie.split(';').find(cookie => cookie.includes('jwt_token')).split('=')[1]}`
-                },
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                if (data.earn_key) {
-                    console.log('Earn Key:', data.earn_key);
-                    return data.earn_key;
-                } else {
-                    throw new Error('Earn key not found in the response.');
-                }
-            } else if (response.status === 401) {
-                throw new Error('Unauthorized: Invalid or missing authentication token.');
-            } else if (response.status === 429) {
-                throw new Error('Rate limit exceeded: Please try again later.');
-            } else if (response.status === 500) {
-                const errorData = await response.json();
-                throw new Error(`Server Error: ${errorData.detail || 'An unexpected error occurred.'}`);
-            } else {
-                const errorData = await response.json();
-                throw new Error(`Error ${response.status}: ${errorData.detail || 'An unexpected error occurred.'}`);
-            }
-        } catch (error) {
-            console.error('Error generating earn key:', error.message);
-            throw error;
-        }
-    }
-
-    let earnButtonAssignedLink = false;
-    document.querySelectorAll("#DLP_Main_Earn_Button_1_ID, #DLP_Secondary_Earn_Button_1_ID").forEach(button => {
-        button.addEventListener('click', () => {
-            button.style.opacity = '0.5';
-            button.style.pointerEvents = 'none';
-
-            generateEarnKey()
-                .then(earnKey => {
-                    console.log('Successfully retrieved earn key:', earnKey);
-                    // button.setAttribute("onclick", `window.open('${serverURL}/earn/connect/link/${earnKey}', '_blank');`);
-                    if (!earnButtonAssignedLink) {
-                        earnButtonAssignedLink = true;
-                        // window.open(`${serverURL}/earn/connect/link/${earnKey}`, '_blank');
-                        console.log("Earn link disabled (Offline)");
-                    }
-                })
-                .catch(error => {
-                    console.error('Failed to retrieve earn key:', error.message);
-                })
-                .finally(() => {
-                    button.style.opacity = '';
-                    button.style.pointerEvents = '';
-                });
-        });
-    });
 
 
 

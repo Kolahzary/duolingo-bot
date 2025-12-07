@@ -12,7 +12,6 @@
     "login-auto": "pnpm run exec-script src/login-auto.ts",
     "login-verify": "pnpm run exec-script src/login-verify.ts",
     "start-manual": "pnpm run exec-script src/start-manual.ts",
-    "start-manual-verify": "pnpm run exec-script src/start-manual-verify.ts",
     "get-status": "pnpm run exec-script src/get-status.ts",
     "switch-language": "pnpm run exec-script src/switch-language.ts",
     "practice": "pnpm run exec-script src/practice.ts",
